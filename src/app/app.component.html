@@ -1,3 +1,4 @@
+<!--Log In-->
 <div class="row justify-content-center grad" *ngIf="window=='LogIn'">
   <div class="col-6 ">
     <div style="text-align:center">
@@ -5,7 +6,7 @@
         Welcome
       </h1>
       <img width="300" alt="Angular Logo" src="assets/tabas.png">
-    </div> 
+    </div>
 
     <!-- Log In -->
     <form class="form-horizontal">
@@ -43,8 +44,7 @@
 
       <div class="form-group">
         <div class="col-sm-offset-2 col">
-          <button type="button" class="btn btn-info btn-block" routerLink='{{router_Link}}'
-            (click)="getDataFromDOM()">Log In</button>
+          <button type="button" class="btn btn-info btn-block" (click)="getDataFromDOM()">Log In</button>
 
           <br>
 
@@ -61,50 +61,89 @@
 
           <div class="row justify-content-center">
             <div class="col-8">
-              <button type="button" class="btn btn-dark btn-block" routerLink="SignUpAdmin">Create New Account</button>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#exampleModal">
+                Create New Account
+              </button>
             </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Sign Up Administrator</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <app-sign-up-admin></app-sign-up-admin>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
     </form>
-
   </div>
 </div>
 
 
-<!--The content below is only a placeholder and can be replaced.-->
+<!--Menu-->
 <div style="text-align:center" *ngIf="window=='Menu'">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand">Navbar</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
       aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+          <a class="nav-link dropdown-toggle" id="navbarCreating" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            Dropdown link
+            Creation
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
+          <div class="dropdown-menu" aria-labelledby="navbarCreating">
+            <a class="dropdown-item" routerLink="C_Suitcases">Suitcase</a>
+            <a class="dropdown-item" routerLink="C_BagCart">BagCart</a>
           </div>
         </li>
-      </ul>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarAssignment" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Assignment
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarAssignment">
+            <a class="dropdown-item" routerLink="A_PlaneToFlight">Plane to Flight</a>
+            <a class="dropdown-item" routerLink="A_BagCartToFlight">BagCart to Flight</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarAssignment" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Close
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarAssignment">
+            <a class="dropdown-item" routerLink="Close_BagCart">BagCart</a>
+          </div>
+        </li>
+
+      </ul>      
     </div>
+    <div class="row justify-content-end">
+        <button type="button" class="btn btn-outline-secondary" routerLink="" (click)="windows('LogIn')">Sign Out</button>
+        
+      </div>
   </nav>
+
+  <router-outlet></router-outlet>
+
 </div>
 
-<router-outlet></router-outlet>

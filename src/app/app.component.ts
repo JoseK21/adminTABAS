@@ -61,4 +61,21 @@ export class AppComponent {
       this.password_show = 'password';
     }    
   }
+
+
+  /**
+   * windows
+   */
+  public windows(window:string) {
+    this.window = window;
+  }
+
+  /**
+   * SignUpAdmin
+   */
+  public SignUpAdmin() {
+    this.window="SignUpAdmin";    
+  }
+
+  /// Expected JSON: {"username": "XXXX", "password": "XXXX"}
 }

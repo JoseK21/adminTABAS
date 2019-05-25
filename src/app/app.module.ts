@@ -11,6 +11,7 @@ import { PlaneToFlightComponent } from './plane-to-flight/plane-to-flight.compon
 import { BagcartToFlightComponent } from './bagcart-to-flight/bagcart-to-flight.component';
 import { CloseBagcartComponent } from './close-bagcart/close-bagcart.component';
 import { SignOutComponent } from './sign-out/sign-out.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { SignOutComponent } from './sign-out/sign-out.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [],
