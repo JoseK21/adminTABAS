@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ServiceService } from './services.service';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +11,8 @@ export class AppComponent {
   // Show password : check box
   password_show : string = 'password';
 
-  //
-  window : string = "LogIn"; // or Menu
+  // Window
+  window : string = 'Menu'; // or Menu/LogIn
 
   // Alert 
   show_alert : boolean = false;
@@ -21,37 +22,20 @@ export class AppComponent {
   // Router
   router_Link : string = '';
 
-  constructor() { }
+  constructor(private service: ServiceService) { }
 
   ngOnInit() {
   }
 
   /**
-   * show_Modal
+   * show_Alert
+   * @param value 
    */
   public show_Alert(value : boolean) {
     this.show_alert = value;
   }
 
-  
-  /**
-   * getDataFromDOM
-   */
-  public getDataFromDOM() {
-    let username : string = (<HTMLInputElement>document.getElementById("input_Username")).value.trim(); 
-    let password : string = (<HTMLInputElement>document.getElementById("input_Password")).value.trim(); 
-    let role : string = (<HTMLInputElement>document.getElementById("input_Role")).value.trim();
-    
-    if(username.length == 0 || password.length == 0 || role.length == 0){      
-      this.show_alert = true;
-      this.text_alert = 'Empty spaces';
-      this.type_alert  = 'warning';
-    }else{
-      this.window = 'Menu';
-    }
-  }
-
-  /**
+   /**
    * showPassword
    */
   public showPassword() {
@@ -65,6 +49,7 @@ export class AppComponent {
 
   /**
    * windows
+   * @param window 
    */
   public windows(window:string) {
     this.window = window;
@@ -76,6 +61,41 @@ export class AppComponent {
   public SignUpAdmin() {
     this.window="SignUpAdmin";    
   }
+  
+  /**
+   * logIn  LogIn Admin 
+   */
+  public logIn() {
+    let username : string = (<HTMLInputElement>document.getElementById("input_Username")).value.trim(); 
+    let password : string = (<HTMLInputElement>document.getElementById("input_Password")).value.trim(); 
+    let role : string = (<HTMLInputElement>document.getElementById("input_Role")).value.trim();
+    
+    if(username.length == 0 || password.length == 0 || role.length == 0){      
+      this.show_alert = true;
+      this.text_alert = 'Empty spaces';
+      this.type_alert  = 'warning';
+    }else{
+      const json = {
+        username: username,
+        password: password,
+       // role: role
+      };
 
-  /// Expected JSON: {"username": "XXXX", "password": "XXXX"}
+      console.log(JSON.parse(JSON.stringify(json)));
+
+      this.service.logIn(json).subscribe((jsonTransfer) => {
+        const userStr = JSON.stringify(jsonTransfer);
+        const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
+        if (jsonWEBAPI.http_result == 1) {
+          this.window = 'Menu';
+          alert("Role : "+role);
+        } else {
+          this.text_alert = jsonWEBAPI.msg;
+          this.type_alert = 'danger';
+          this.show_alert = true;
+        }
+      });
+      
+    }
+  }
 }

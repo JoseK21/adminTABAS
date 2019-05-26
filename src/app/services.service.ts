@@ -8,8 +8,7 @@ const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/js
 })
 export class ServiceService {
 
-  loadUniv: boolean = false;
-  private api = 'http://192.168.43.114/tabas/';
+  private api = 'http://localhost:51208/tabas/';
 
   constructor(private http: HttpClient) { }
 
@@ -31,9 +30,14 @@ export class ServiceService {
     return this.http.get(path);
   }
 
+
   signUpAdmin(json:any){
     const path = `${this.api}signup`;
     return this.http.post(path, "'" + JSON.stringify(json) + "'", httpOptions);
   }
 
+  adminSetRole(username:string,json:any){
+    const path = `${this.api}signup/${username}/roles`;
+    return this.http.post(path, "'" + JSON.stringify(json) + "'", httpOptions);
+  }
 }

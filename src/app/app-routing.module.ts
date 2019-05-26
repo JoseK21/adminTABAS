@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SignUpAdminComponent } from './sign-up-admin/sign-up-admin.component';
-import { SignUpUserComponent } from './sign-up-user/sign-up-user.component';
 import { CreateSuitcaseComponent } from './create-suitcase/create-suitcase.component';
 import { CreateBagcartComponent } from './create-bagcart/create-bagcart.component';
 import { PlaneToFlightComponent } from './plane-to-flight/plane-to-flight.component';
@@ -20,7 +19,7 @@ const routes: Routes = [
 
   {path:"Close_BagCart" , component:CloseBagcartComponent},
 
-  { path: '', component: AppComponent },  
+ // { path: '', component: AppComponent },  
 
   { path: '**', pathMatch: 'full', redirectTo: 'pageNotFound' }
   

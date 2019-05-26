@@ -7,7 +7,6 @@
       </h1>
       <img width="300" alt="Angular Logo" src="assets/tabas.png">
     </div>
-
     <!-- Log In -->
     <form class="form-horizontal">
       <div class="form-group">
@@ -44,7 +43,7 @@
 
       <div class="form-group">
         <div class="col-sm-offset-2 col">
-          <button type="button" class="btn btn-info btn-block" (click)="getDataFromDOM()">Log In</button>
+          <button type="button" class="btn btn-info btn-block" (click)="logIn()">Log In</button>
 
           <br>
 
@@ -97,8 +96,8 @@
 
 <!--Menu-->
 <div style="text-align:center" *ngIf="window=='Menu'">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand">Navbar</a>
+  <nav class="navbar navbar-expand-lg navbar-primary bg-primary">
+    <img src="assets/tabas_name(1).png" width="140" height="35">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
       aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -135,15 +134,13 @@
           </div>
         </li>
 
-      </ul>      
+      </ul>
     </div>
     <div class="row justify-content-end">
-        <button type="button" class="btn btn-outline-secondary" routerLink="" (click)="windows('LogIn')">Sign Out</button>
-        
-      </div>
+      <button type="button" class="btn btn-outline-light" routerLink="" (click)="windows('LogIn')">Sign Out</button>
+    </div>
   </nav>
 
   <router-outlet></router-outlet>
 
 </div>
-

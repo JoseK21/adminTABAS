@@ -15,9 +15,32 @@ export class SignUpAdminComponent implements OnInit {
   // Interface
   password_show: string = 'password';
 
+
+  listRole: String[] = ["A", "B", "C"];
   constructor(private service: ServiceService) { }
 
   ngOnInit() {
+  }
+
+  /**
+   * roleCheck
+   */
+  public roleCheck() {
+    let str: String[] = [];
+    for (let index = 0; index < this.listRole.length; index++) {
+      const element = this.listRole[index];
+      if (((<HTMLInputElement>document.getElementById("check_" + element)).checked)) {
+        str.push(element);
+      }
+    }
+    if (str.length == 0) {
+      alert("ERROR - ningun rol seleccionado");
+      return 'ERROR';
+    } else {
+      alert(str);
+      return str;
+    }
+
   }
 
   /**
@@ -25,14 +48,6 @@ export class SignUpAdminComponent implements OnInit {
    */
   public show_Alert(value: boolean) {
     this.show_alert = value;
-  }
-
-  /**
-  * editAlert
-  */
-  public editAlert(text: string, type: string) {
-    this.text_alert = text;
-    this.type_alert = type;
   }
 
   /**
@@ -61,8 +76,12 @@ export class SignUpAdminComponent implements OnInit {
 
 
     if (f_name.length == 0 || l_name.length == 0 || email.length == 0 || phone_number.length == 0 || username.length == 0 || password.length == 0) {
-      this.show_alert = true;
+
       this.text_alert = 'Empty spaces';
+      this.type_alert = 'warning';
+    }
+    else if (this.roleCheck() == "ERROR") {
+      this.text_alert = 'Role Empty';
       this.type_alert = 'warning';
     } else {
       const json = {
@@ -70,22 +89,34 @@ export class SignUpAdminComponent implements OnInit {
         email: email,
         phone_number: phone_number,
         username: username,
-        password: password
+        password: password,
       };
 
       console.log(JSON.parse(JSON.stringify(json)));
 
       this.service.signUpAdmin(json).subscribe((jsonTransfer) => {
-        const userStr = JSON.stringify(jsonTransfer);
-        const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
+        const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
         if (jsonWEBAPI.http_result == 1) {
-          this.editAlert(jsonWEBAPI.msg, "success");
+          const json_role = {
+            role: this.roleCheck()
+          };
+          this.service.adminSetRole(username, json_role).subscribe((jsonTransferRole) => {
+            const jsonWEBAPI_Role = JSON.parse(JSON.parse(JSON.stringify(jsonTransferRole)));
+            if (jsonWEBAPI_Role.http_result == 1) {
+              this.text_alert = jsonWEBAPI_Role.msg;
+              this.type_alert = 'success';
+            } else {
+              this.text_alert = jsonWEBAPI_Role.msg;
+              this.type_alert = 'danger';
+            }
+          });
         } else {
-          this.editAlert(jsonWEBAPI.msg, "danger");
+          this.text_alert = jsonWEBAPI.msg;
+          this.type_alert = 'danger';
         }
       });
-
     }
+    this.show_alert = true;
 
   }
 }
