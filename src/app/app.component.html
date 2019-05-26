@@ -110,8 +110,8 @@
             Creation
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarCreating">
-            <a class="dropdown-item" routerLink="C_Suitcases">Suitcase</a>
-            <a class="dropdown-item" routerLink="C_BagCart">BagCart</a>
+            <a class="dropdown-item" routerLink="C_Suitcases" (click)="imageView(false)">Suitcase</a>
+            <a class="dropdown-item" routerLink="C_BagCart" (click)="imageView(false)">BagCart</a>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -120,8 +120,8 @@
             Assignment
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarAssignment">
-            <a class="dropdown-item" routerLink="A_PlaneToFlight">Plane to Flight</a>
-            <a class="dropdown-item" routerLink="A_BagCartToFlight">BagCart to Flight</a>
+            <a class="dropdown-item" routerLink="A_PlaneToFlight" (click)="imageView(false)">Plane to Flight</a>
+            <a class="dropdown-item" routerLink="A_BagCartToFlight" (click)="imageView(false)">BagCart to Flight</a>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -130,10 +130,9 @@
             Close
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarAssignment">
-            <a class="dropdown-item" routerLink="Close_BagCart">BagCart</a>
+            <a class="dropdown-item" routerLink="Close_BagCart" (click)="imageView(false)">BagCart</a>
           </div>
         </li>
-
       </ul>
     </div>
     <div class="row justify-content-end">
@@ -141,6 +140,12 @@
     </div>
   </nav>
 
-  <router-outlet></router-outlet>
+  <div *ngIf="!showImage">
+    <router-outlet></router-outlet>
+  </div>
 
+  <div *ngIf="showImage">
+    <br><br><br><br><br>
+    <img src="assets/tabas_short.png">
+  </div>
 </div>
