@@ -15,12 +15,11 @@ export class SignUpAdminComponent implements OnInit {
   // Interface
   password_show: string = 'password';
 
-  listRole: String[] = ["a","b","c"];
+  listRole: String[] = [];
 
   constructor(private service: ServiceService) { }
 
-  ngOnInit() { this.getRoles() ;
-  }
+  ngOnInit() { this.getRoles() ; }
 
   /**
    * roleCheck
@@ -41,12 +40,13 @@ export class SignUpAdminComponent implements OnInit {
   }
 
   /**
-   * getBrands
+   * getRoles
    */
   public getRoles() {
     this.service.getRoles().subscribe((jsonTransfer) => {
       const userStr = JSON.stringify(jsonTransfer);
       const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
+      console.log(jsonWEBAPI);
       if (jsonWEBAPI.http_result == 1) {
         this.listRole = jsonWEBAPI.roles;
       } else {
@@ -105,7 +105,7 @@ export class SignUpAdminComponent implements OnInit {
         const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
         if (jsonWEBAPI.http_result == 1) {
           const json_role = {
-            role: this.roleCheck()
+            roles: this.roleCheck()
           };
           this.service.adminSetRole(username, json_role).subscribe((jsonTransferRole) => {
             const jsonWEBAPI_Role = JSON.parse(JSON.parse(JSON.stringify(jsonTransferRole)));

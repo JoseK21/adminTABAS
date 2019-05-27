@@ -5,7 +5,7 @@
       <h1>
         Welcome
       </h1>
-      <img width="300" alt="Angular Logo" src="assets/tabas.png">
+      <img width="300" alt="TABAS Logo" src="assets/tabas.png">
     </div>
     <!-- Log In -->
     <form class="form-horizontal">
@@ -20,7 +20,7 @@
         <div class="col">
           <input type={{password_show}} class="form-control" id="input_Password" placeholder="Password" required>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="check_Password" (click)="showPassword()">
+            <input class="form-check-input" type="checkbox" id="check_Password" (click)="showPassword()">
             <label class="form-check-label" for="check_Password">
               Show
             </label>
@@ -32,22 +32,14 @@
         <label for="input_Role" class="col-sm-1 control-label">Role</label>
         <div class="col">
           <select class="form-control" id="input_Role">
-            <option>Embarcador</option>
-            <option>Scan</option>
-            <option>Administrator</option>
-            <option>Receptionist</option>
+            <option *ngFor="let rol of listRole">{{rol}}</option>
           </select>
         </div>
       </div>
-
-
       <div class="form-group">
         <div class="col-sm-offset-2 col">
           <button type="button" class="btn btn-info btn-block" (click)="logIn()">Log In</button>
-
           <br>
-
-
           <div *ngIf="show_alert">
             <div class="alert alert-{{type_alert}} alert-dismissible fade show" role="alert">
               {{text_alert}}
@@ -56,8 +48,6 @@
               </button>
             </div>
           </div>
-
-
           <div class="row justify-content-center">
             <div class="col-8">
               <!-- Button trigger modal -->
@@ -125,6 +115,15 @@
           </div>
         </li>
         <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarReport" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Report
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarReport">
+            <a class="dropdown-item" routerLink="Report" (click)="imageView(false)">Generate Report</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarAssignment" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             Close
@@ -133,6 +132,7 @@
             <a class="dropdown-item" routerLink="Close_BagCart" (click)="imageView(false)">BagCart</a>
           </div>
         </li>
+
       </ul>
     </div>
     <div class="row justify-content-end">

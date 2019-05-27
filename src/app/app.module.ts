@@ -10,6 +10,7 @@ import { PlaneToFlightComponent } from './plane-to-flight/plane-to-flight.compon
 import { BagcartToFlightComponent } from './bagcart-to-flight/bagcart-to-flight.component';
 import { CloseBagcartComponent } from './close-bagcart/close-bagcart.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ReportComponent } from './report/report.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
     PlaneToFlightComponent,
     BagcartToFlightComponent,
     CloseBagcartComponent,
+    ReportComponent,
   ],
   imports: [
     BrowserModule,

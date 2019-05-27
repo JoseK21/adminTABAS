@@ -133,7 +133,7 @@ export class ServiceService {
     console.log(path);
     return this.http.get(path);
   }
-
+ 
   /**
    * Get all Brands
    */

@@ -22,12 +22,31 @@ export class AppComponent {
   // Main View
   showImage: boolean = true;
 
+  listRole: String[] = [];
+
   constructor(private service: ServiceService) { }
 
-  ngOnInit() { }
+  ngOnInit() { this.getRoles() }
 
-  imageView(show:boolean){
-    this.showImage=show
+  imageView(show: boolean) {
+    this.showImage = show
+  }
+
+  /**
+   * getBrands
+   */
+  public getRoles() {
+    this.service.getRoles().subscribe((jsonTransfer) => {
+      const userStr = JSON.stringify(jsonTransfer);
+      const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
+      console.log(jsonWEBAPI);
+      if (jsonWEBAPI.http_result == 1) {
+        this.listRole = jsonWEBAPI.roles;
+      } else {
+        this.listRole = [];
+        this.listRole.push("Error")
+      }
+    });
   }
 
   /**
@@ -73,7 +92,7 @@ export class AppComponent {
       const json = {
         username: username,
         password: password,
-        // role: role
+        role: role
       };
       this.service.logIn(json).subscribe((jsonTransfer) => {
         const userStr = JSON.stringify(jsonTransfer);

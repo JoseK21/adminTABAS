@@ -65,8 +65,10 @@ export class CloseBagcartComponent implements OnInit {
     this.service.getFlights().subscribe((jsonTransfer) => {
       const userStr = JSON.stringify(jsonTransfer);
       const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
+
+      console.log(jsonWEBAPI);
       if (jsonWEBAPI.http_result == 1) {
-        this.flight_IDs = jsonWEBAPI.flight;
+        this.flight_IDs = jsonWEBAPI.flights;
       } else {
         this.flight_IDs = [];
         this.flight_IDs.push(jsonWEBAPI.msg)

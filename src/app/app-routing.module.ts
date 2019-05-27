@@ -7,6 +7,7 @@ import { PlaneToFlightComponent } from './plane-to-flight/plane-to-flight.compon
 import { BagcartToFlightComponent } from './bagcart-to-flight/bagcart-to-flight.component';
 import { CloseBagcartComponent } from './close-bagcart/close-bagcart.component';
 import { AppComponent } from './app.component';
+import { ReportComponent } from './report/report.component';
 
 const routes: Routes = [
   {path:"SignUpAdmin" , component:SignUpAdminComponent},
@@ -16,6 +17,8 @@ const routes: Routes = [
 
   {path:"A_PlaneToFlight" , component:PlaneToFlightComponent},
   {path:"A_BagCartToFlight" , component:BagcartToFlightComponent},
+
+  {path:"Report" , component:ReportComponent},
 
   {path:"Close_BagCart" , component:CloseBagcartComponent},
 

@@ -1,3 +1,4 @@
+<br>
 <form>
   <div class="form-row">
     <div class="form-group col-md-6">
@@ -45,10 +46,9 @@
   <div class="form-row justify-content-center">
     <button type="button" class="btn btn-success btn-block" (click)="SignUp()">Sign Up</button>
   </div>
-
+  <br>
   <!-- ALERT -->
-  <div class="form-row justify-content-center" *ngIf="show_alert">
-    <br>
+  <div class="form-row justify-content-center" *ngIf="show_alert">    
     <div class="col-10">
       <div class="alert alert-{{type_alert}} alert-dismissible fade show" role="alert">
         <strong>{{text_alert}}</strong>

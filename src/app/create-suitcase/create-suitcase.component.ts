@@ -44,7 +44,7 @@ export class CreateSuitcaseComponent implements OnInit {
     } else {
       const json = {
         username: username,
-        weight: weight,
+        weight: parseFloat(weight),
         color: color
       };
       this.service.createSuitcase(json).subscribe((jsonTransfer) => {
