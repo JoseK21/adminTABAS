@@ -1,3 +1,76 @@
-<p>
-  create-bagcart works!
-</p>
+<br>
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <form>
+        <div class="form-group">
+          <label for="input_Brand_CB">Brand</label>
+          <select id="input_Brand_CB" class="form-control" (click)="getBrands()">
+            <option *ngFor="let brand of brands;">{{brand}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="input_Model_CB">Model</label>
+          <input type="text" class="form-control" id="input_Model_CB" placeholder="Model">
+
+          <!--
+          <select id="input_Model_CB" class="form-control" (click)="getModels()">
+            <option *ngFor="let model of models;">{{model}}</option>
+          </select>
+           -->
+        </div>
+        <button type="button" class="btn btn-primary btn-block" (click)="createBagcart()">Create Bagcart</button>
+
+        <br>
+
+        <!--  Modal -->
+        <div class="row justify-content-center">
+          <div class="col-8">
+            <button type="button" class="btn btn-success btn-block" data-toggle="modal"
+              data-target="#exampleModalScrollable">
+              Add Brand
+            </button>
+          </div>
+        </div>
+
+        <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog"
+          aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalScrollableTitle">Add brand</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <label for="input_Brand_CB_Add">Model</label>
+                <input type="text" class="form-control" id="input_Brand_CB_Add" placeholder="Brand">
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="addBrand()">Add Brand</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- ALERT -->
+        <br>
+        <div class="form-row justify-content-center" *ngIf="show_alert">
+          <div class="col-10">
+            <div class="alert alert-{{type_alert}} alert-dismissible fade show" role="alert">
+              <strong>{{text_alert}}</strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="show_Alert(false)">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

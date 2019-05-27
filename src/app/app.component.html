@@ -95,7 +95,7 @@
 
 
 <!--Menu-->
-<div style="text-align:center" *ngIf="window=='Menu'">
+<div *ngIf="window=='Menu'">
   <nav class="navbar navbar-expand-lg navbar-primary bg-primary">
     <img src="assets/tabas_name(1).png" width="140" height="35">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -146,6 +146,8 @@
 
   <div *ngIf="showImage">
     <br><br><br><br><br>
-    <img src="assets/tabas_short.png">
+    <div class="row justify-content-center">
+      <img src="assets/tabas_short.png">
+    </div>
   </div>
 </div>
