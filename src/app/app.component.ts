@@ -19,15 +19,12 @@ export class AppComponent {
   text_alert: string = 'All is perfect';
   type_alert: string = 'success';
 
-  // Router
-  router_Link: string = '';
-
   // Main View
   showImage: boolean = true;
+
   constructor(private service: ServiceService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   imageView(show:boolean){
     this.showImage=show
@@ -52,20 +49,12 @@ export class AppComponent {
     }
   }
 
-
   /**
    * windows
    * @param window 
    */
   public windows(window: string) {
     this.window = window;
-  }
-
-  /**
-   * SignUpAdmin
-   */
-  public SignUpAdmin() {
-    this.window = "SignUpAdmin";
   }
 
   /**

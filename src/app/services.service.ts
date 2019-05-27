@@ -120,7 +120,7 @@ export class ServiceService {
    * Get all Roles
    */
   getRoles() {
-    const path = `${this.api}role`;
+    const path = `${this.api}roles`;
     console.log(path);
     return this.http.get(path);
   }

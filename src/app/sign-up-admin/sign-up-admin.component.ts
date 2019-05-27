@@ -10,13 +10,13 @@ export class SignUpAdminComponent implements OnInit {
 
   // Alert 
   show_alert: boolean = false;
-  text_alert: string = 'All is perfect';
-  type_alert: string = 'success';
+  text_alert: string = '';
+  type_alert: string = '';
   // Interface
   password_show: string = 'password';
 
-  listRole: String[] = ["A", "B", "C"];
-  
+  listRole: String[] = ["a","b","c"];
+
   constructor(private service: ServiceService) { }
 
   ngOnInit() {
@@ -38,6 +38,22 @@ export class SignUpAdminComponent implements OnInit {
     } else {
       return str;
     }
+  }
+
+  /**
+   * getBrands
+   */
+  public getRoles() {
+    this.service.getRoles().subscribe((jsonTransfer) => {
+      const userStr = JSON.stringify(jsonTransfer);
+      const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
+      if (jsonWEBAPI.http_result == 1) {
+        this.listRole = jsonWEBAPI.roles;
+      } else {
+        this.listRole = [];
+        this.listRole.push("Error")
+      }
+    });
   }
 
   /**
@@ -73,7 +89,7 @@ export class SignUpAdminComponent implements OnInit {
       this.text_alert = 'Empty spaces';
       this.type_alert = 'warning';
     }
-    else if (this.roleCheck() == "ERROR") {
+    else if (this.roleCheck() == 'ERROR') {
       this.text_alert = 'Role Empty';
       this.type_alert = 'warning';
     } else {
