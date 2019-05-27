@@ -19,7 +19,7 @@ export class SignUpAdminComponent implements OnInit {
 
   constructor(private service: ServiceService) { }
 
-  ngOnInit() {
+  ngOnInit() { this.getRoles() ;
   }
 
   /**
