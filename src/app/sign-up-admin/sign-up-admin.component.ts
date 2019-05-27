@@ -15,8 +15,8 @@ export class SignUpAdminComponent implements OnInit {
   // Interface
   password_show: string = 'password';
 
-
   listRole: String[] = ["A", "B", "C"];
+  
   constructor(private service: ServiceService) { }
 
   ngOnInit() {
@@ -34,13 +34,10 @@ export class SignUpAdminComponent implements OnInit {
       }
     }
     if (str.length == 0) {
-      alert("ERROR - ningun rol seleccionado");
       return 'ERROR';
     } else {
-      alert(str);
       return str;
     }
-
   }
 
   /**
@@ -72,11 +69,7 @@ export class SignUpAdminComponent implements OnInit {
     let username: string = (<HTMLInputElement>document.getElementById("input_Username_SU")).value.trim();
     let password: string = (<HTMLInputElement>document.getElementById("input_Password_SU")).value.trim();
 
-    console.log(f_name + " \n" + l_name + " \n" + email + " \n" + phone_number + " \n" + username + " \n" + password);
-
-
     if (f_name.length == 0 || l_name.length == 0 || email.length == 0 || phone_number.length == 0 || username.length == 0 || password.length == 0) {
-
       this.text_alert = 'Empty spaces';
       this.type_alert = 'warning';
     }
@@ -91,8 +84,6 @@ export class SignUpAdminComponent implements OnInit {
         username: username,
         password: password,
       };
-
-      console.log(JSON.parse(JSON.stringify(json)));
 
       this.service.signUpAdmin(json).subscribe((jsonTransfer) => {
         const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
@@ -117,6 +108,5 @@ export class SignUpAdminComponent implements OnInit {
       });
     }
     this.show_alert = true;
-
   }
 }

@@ -11,14 +11,13 @@
         </div>
         <div class="form-group">
           <label for="input_Model_CB">Model</label>
-          <input type="text" class="form-control" id="input_Model_CB" placeholder="Model">
-
-          <!--
-          <select id="input_Model_CB" class="form-control" (click)="getModels()">
-            <option *ngFor="let model of models;">{{model}}</option>
-          </select>
-           -->
+          <input type="number" class="form-control" id="input_Model_CB" placeholder="Model" min="1950" max="2050">
         </div>
+        <div class="form-group">
+          <label for="input_Capacity_CB">Capacity</label>
+          <input type="number" class="form-control" id="input_Capacity_CB" step="0.1" placeholder="Capacity">
+        </div>
+
         <button type="button" class="btn btn-primary btn-block" (click)="createBagcart()">Create Bagcart</button>
 
         <br>
@@ -44,8 +43,20 @@
                 </button>
               </div>
               <div class="modal-body">
-                <label for="input_Brand_CB_Add">Model</label>
+                <label for="input_Brand_CB_Add">New Brand</label>
                 <input type="text" class="form-control" id="input_Brand_CB_Add" placeholder="Brand">
+                <br>
+                <div class="form-row justify-content-center" *ngIf="show_alert_2">
+                  <div class="col-10">
+                    <div class="alert alert-{{type_alert_2}} alert-dismissible fade show" role="alert">
+                      <strong>{{text_alert_2}}</strong>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"
+                        (click)="show_Alert_2(false)">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
 
               </div>
               <div class="modal-footer">

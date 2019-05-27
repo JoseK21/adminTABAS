@@ -37,8 +37,6 @@ export class CreateSuitcaseComponent implements OnInit {
     let weight: string = (<HTMLInputElement>document.getElementById("input_Weight_CS")).value.trim();
     let color: string = (<HTMLInputElement>document.getElementById("input_Color_CS")).value.trim();
 
-    alert("username "+username + "\nweight "+weight+ "\ncolor "+ color);
-    alert("username "+username.length + "\nweight "+weight.length+ "\ncolor "+ color.length);
     if (username.length == 0 || weight.length == 0 || color.length == 0) {
       this.show_alert = true;
       this.text_alert = 'Empty spaces';
@@ -49,9 +47,6 @@ export class CreateSuitcaseComponent implements OnInit {
         weight: weight,
         color: color
       };
-
-      console.log(JSON.parse(JSON.stringify(json)));
-
       this.service.createSuitcase(json).subscribe((jsonTransfer) => {
         const userStr = JSON.stringify(jsonTransfer);
         const jsonWEBAPI = JSON.parse(JSON.parse(userStr));

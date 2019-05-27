@@ -1,3 +1,28 @@
-<p>
-  close-bagcart works!
-</p>
+<br>
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <form>
+        <div class="form-group">
+          <label for="input_Flight_ID_CB">Flight_ID</label>
+          <select id="input_Flight_ID_CB" class="form-control" (click)="getFlights()">
+            <option *ngFor="let flight of flight_IDs;">{{flight}}</option>
+          </select>
+        </div>
+        <button type="button" class="btn btn-primary btn-block" (click)="closeBagcart()">Close Bagcart</button>
+        <!-- ALERT -->
+        <br>
+        <div class="form-row justify-content-center" *ngIf="show_alert">
+          <div class="col-10">
+            <div class="alert alert-{{type_alert}} alert-dismissible fade show" role="alert">
+              <strong>{{text_alert}}</strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="show_Alert(false)">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

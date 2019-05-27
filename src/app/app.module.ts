@@ -9,7 +9,6 @@ import { CreateBagcartComponent } from './create-bagcart/create-bagcart.componen
 import { PlaneToFlightComponent } from './plane-to-flight/plane-to-flight.component';
 import { BagcartToFlightComponent } from './bagcart-to-flight/bagcart-to-flight.component';
 import { CloseBagcartComponent } from './close-bagcart/close-bagcart.component';
-import { SignOutComponent } from './sign-out/sign-out.component';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -21,7 +20,6 @@ import { HttpClientModule } from '@angular/common/http';
     PlaneToFlightComponent,
     BagcartToFlightComponent,
     CloseBagcartComponent,
-    SignOutComponent
   ],
   imports: [
     BrowserModule,

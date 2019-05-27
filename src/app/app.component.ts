@@ -86,15 +86,11 @@ export class AppComponent {
         password: password,
         // role: role
       };
-
-      console.log(JSON.parse(JSON.stringify(json)));
-
       this.service.logIn(json).subscribe((jsonTransfer) => {
         const userStr = JSON.stringify(jsonTransfer);
         const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
         if (jsonWEBAPI.http_result == 1) {
           this.window = 'Menu';
-          alert("Role : " + role);
         } else {
           this.text_alert = jsonWEBAPI.msg;
           this.type_alert = 'danger';

@@ -12,6 +12,11 @@ export class CreateBagcartComponent implements OnInit {
   show_alert: boolean = false;
   text_alert: string = '';
   type_alert: string = '';
+  // Alert 2
+  show_alert_2: boolean = false;
+  text_alert_2: string = 'Nada';
+  type_alert_2: string = 'success';
+
   brands: String[] = [];
   models: String[] = [];
   constructor(private service: ServiceService) { }
@@ -23,10 +28,17 @@ export class CreateBagcartComponent implements OnInit {
 
 
   /**
-   * show_Modal
+   * show_Alert
    */
   public show_Alert(value: boolean) {
     this.show_alert = value;
+  }
+
+  /**
+   * show_Aler_2
+   */
+  public show_Alert_2(value: boolean) {
+    this.show_alert_2 = value;
   }
 
   /**
@@ -34,20 +46,19 @@ export class CreateBagcartComponent implements OnInit {
    */
   public createBagcart() {
     let brand: string = (<HTMLInputElement>document.getElementById("input_Brand_CB")).value.trim();
-    let model: string = (<HTMLInputElement>document.getElementById("input_Model_CB")).value.trim();
+    let model: string = (<HTMLInputElement>document.getElementById("input_Model_CB")).value.trim(); 
+    let capacity: string = (<HTMLInputElement>document.getElementById("input_Capacity_CB")).value.trim(); 
 
-    if (brand.length == 0 || model.length == 0) {
+    if (brand.length == 0 || model.length == 0 || capacity.length == 0) {
       this.show_alert = true;
       this.text_alert = 'Empty spaces';
       this.type_alert = 'warning';
     } else {
       const json = {
         brand: brand,
-        model: model,
+        model: Number(model),
+        capacity: Number(capacity)
       };
-
-      console.log(JSON.parse(JSON.stringify(json)));
-
       this.service.createBagCart(json).subscribe((jsonTransfer) => {
         const userStr = JSON.stringify(jsonTransfer);
         const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
@@ -65,7 +76,37 @@ export class CreateBagcartComponent implements OnInit {
   }
 
   /**
-   * getColors
+   * addBrand
+   */
+  public addBrand() {
+    let add_brand: string = (<HTMLInputElement>document.getElementById("input_Brand_CB_Add")).value.trim();
+
+    if (add_brand.length == 0 ) {      
+      this.text_alert_2 = 'Empty spaces';
+      this.type_alert_2 = 'warning';
+      this.show_alert_2 = true;
+    } else {
+      const json = {
+        brand: add_brand,
+      };
+      this.service.addBrand(json).subscribe((jsonTransfer) => {
+        const userStr = JSON.stringify(jsonTransfer);
+        const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
+        if (jsonWEBAPI.http_result == 1) {
+          this.text_alert_2 = jsonWEBAPI.msg;
+          this.type_alert_2 = 'success';
+          this.show_alert_2 = true;
+        } else {
+          this.text_alert_2 = jsonWEBAPI.msg;
+          this.type_alert_2 = 'danger';
+          this.show_alert_2 = true;
+        }
+      });
+    }
+  }
+
+  /**
+   * getBrands
    */
   public getBrands() {
     this.service.getBrands().subscribe((jsonTransfer) => {
@@ -81,7 +122,7 @@ export class CreateBagcartComponent implements OnInit {
   }
 
   /**
-   * getColors
+   * getModels
    */
   public getModels() {
     this.service.getModels().subscribe((jsonTransfer) => {
