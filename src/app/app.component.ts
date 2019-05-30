@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ServiceService } from './services.service';
+import { LogInService } from './services/log-in.service';
+import { SignUpService } from './services/sign-up.service';
 
 @Component({
   selector: 'app-root',
@@ -24,10 +26,14 @@ export class AppComponent {
 
   listRole: String[] = [];
 
-  constructor(private service: ServiceService) { }
+  constructor(private service_SignUp: SignUpService , private service_LogIn: LogInService) { }
 
   ngOnInit() { this.getRoles() }
 
+  /**
+   * Show Logo
+   * @param show Boolean
+   */
   imageView(show: boolean) {
     this.showImage = show
   }
@@ -36,7 +42,7 @@ export class AppComponent {
    * getBrands
    */
   public getRoles() {
-    this.service.getRoles().subscribe((jsonTransfer) => {
+    this.service_SignUp.getRoles().subscribe((jsonTransfer) => {
       const userStr = JSON.stringify(jsonTransfer);
       const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
       console.log(jsonWEBAPI);
@@ -94,7 +100,7 @@ export class AppComponent {
         password: password,
         role: role
       };
-      this.service.logIn(json).subscribe((jsonTransfer) => {
+      this.service_LogIn.logIn(json).subscribe((jsonTransfer) => {
         const userStr = JSON.stringify(jsonTransfer);
         const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
         if (jsonWEBAPI.http_result == 1) {

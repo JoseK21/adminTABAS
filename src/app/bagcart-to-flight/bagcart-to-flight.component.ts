@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ServiceService } from '../services.service';
+import { BagCartService } from '../services/bag-cart.service';
+import { FlightService } from '../services/flight.service';
 
 @Component({
   selector: 'app-bagcart-to-flight',
@@ -16,7 +17,7 @@ export class BagcartToFlightComponent implements OnInit {
   flights: String[] = [];
   brands: String[] = [];
 
-  constructor(private service: ServiceService) { }
+  constructor(private service_BagCart: BagCartService , private service_Flight: FlightService) { }
   
   ngOnInit() {  }
 
@@ -43,7 +44,7 @@ export class BagcartToFlightComponent implements OnInit {
         flight_id: flight,
         bg_brand: brand,
       };
-      this.service.assignBagcartToFlight(json).subscribe((jsonTransfer) => {
+      this.service_Flight.assignBagcartToFlight(json).subscribe((jsonTransfer) => {
         const userStr = JSON.stringify(jsonTransfer);
         const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
         if (jsonWEBAPI.http_result == 1) {
@@ -63,7 +64,7 @@ export class BagcartToFlightComponent implements OnInit {
    * getFlights
    */
   public getFlights() {
-    this.service.getFlights().subscribe((jsonTransfer) => {
+    this.service_Flight.getFlights().subscribe((jsonTransfer) => {
       const userStr = JSON.stringify(jsonTransfer);
       const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
       if (jsonWEBAPI.http_result == 1) {
@@ -79,7 +80,7 @@ export class BagcartToFlightComponent implements OnInit {
    * getBrands
    */
   public getBrands() {
-    this.service.getBrands().subscribe((jsonTransfer) => {
+    this.service_BagCart.getBrands().subscribe((jsonTransfer) => {
       const userStr = JSON.stringify(jsonTransfer);
       const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
       if (jsonWEBAPI.http_result == 1) {

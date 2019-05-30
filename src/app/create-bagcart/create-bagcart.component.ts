@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ServiceService } from '../services.service';
+import { BagCartService } from '../services/bag-cart.service';
+import { FlightService } from '../services/flight.service';
 
 @Component({
   selector: 'app-create-bagcart',
@@ -19,8 +20,8 @@ export class CreateBagcartComponent implements OnInit {
 
   brands: String[] = [];
   models: String[] = [];
-  constructor(private service: ServiceService) { }
 
+  constructor(private service_BagCart: BagCartService, private service_Flight: FlightService) { }
 
   ngOnInit() {
 
@@ -46,8 +47,8 @@ export class CreateBagcartComponent implements OnInit {
    */
   public createBagcart() {
     let brand: string = (<HTMLInputElement>document.getElementById("input_Brand_CB")).value.trim();
-    let model: string = (<HTMLInputElement>document.getElementById("input_Model_CB")).value.trim(); 
-    let capacity: string = (<HTMLInputElement>document.getElementById("input_Capacity_CB")).value.trim(); 
+    let model: string = (<HTMLInputElement>document.getElementById("input_Model_CB")).value.trim();
+    let capacity: string = (<HTMLInputElement>document.getElementById("input_Capacity_CB")).value.trim();
 
     if (brand.length == 0 || model.length == 0 || capacity.length == 0) {
       this.show_alert = true;
@@ -59,7 +60,7 @@ export class CreateBagcartComponent implements OnInit {
         model: Number(model),
         capacity: Number(capacity)
       };
-      this.service.createBagCart(json).subscribe((jsonTransfer) => {
+      this.service_BagCart.createBagCart(json).subscribe((jsonTransfer) => {
         const userStr = JSON.stringify(jsonTransfer);
         const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
         if (jsonWEBAPI.http_result == 1) {
@@ -81,7 +82,7 @@ export class CreateBagcartComponent implements OnInit {
   public addBrand() {
     let add_brand: string = (<HTMLInputElement>document.getElementById("input_Brand_CB_Add")).value.trim();
 
-    if (add_brand.length == 0 ) {      
+    if (add_brand.length == 0) {
       this.text_alert_2 = 'Empty spaces';
       this.type_alert_2 = 'warning';
       this.show_alert_2 = true;
@@ -89,7 +90,7 @@ export class CreateBagcartComponent implements OnInit {
       const json = {
         brand: add_brand,
       };
-      this.service.addBrand(json).subscribe((jsonTransfer) => {
+      this.service_BagCart.addBrand(json).subscribe((jsonTransfer) => {
         const userStr = JSON.stringify(jsonTransfer);
         const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
         if (jsonWEBAPI.http_result == 1) {
@@ -109,7 +110,7 @@ export class CreateBagcartComponent implements OnInit {
    * getBrands
    */
   public getBrands() {
-    this.service.getBrands().subscribe((jsonTransfer) => {
+    this.service_BagCart.getBrands().subscribe((jsonTransfer) => {
       const userStr = JSON.stringify(jsonTransfer);
       const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
       if (jsonWEBAPI.http_result == 1) {
@@ -125,7 +126,7 @@ export class CreateBagcartComponent implements OnInit {
    * getModels
    */
   public getModels() {
-    this.service.getModels().subscribe((jsonTransfer) => {
+    this.service_Flight.getPlanes().subscribe((jsonTransfer) => {
       const userStr = JSON.stringify(jsonTransfer);
       const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
       if (jsonWEBAPI.http_result == 1) {

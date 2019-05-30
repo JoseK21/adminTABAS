@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ServiceService } from '../services.service';
+import { FlightService } from '../services/flight.service';
 
 @Component({
   selector: 'app-plane-to-flight',
@@ -8,19 +8,19 @@ import { ServiceService } from '../services.service';
 })
 export class PlaneToFlightComponent implements OnInit {
 
-  
-  
+
+
   // Alert 
   show_alert: boolean = false;
   text_alert: string = '';
   type_alert: string = '';
-  
+
   flights: String[] = [];
   planes: String[] = [];
 
-  constructor(private service: ServiceService) { }
-  
-  ngOnInit() {  }
+  constructor(private service_flight: FlightService) { }
+
+  ngOnInit() { }
 
   /**
    * show_Alert
@@ -33,8 +33,8 @@ export class PlaneToFlightComponent implements OnInit {
    * createBagcart
    */
   public a_PlaneToFlight() {
-    let plane: string = (<HTMLInputElement>document.getElementById("input_Planes_PTF")).value.trim();   
-    let flight: string = (<HTMLInputElement>document.getElementById("input_Flight_PTF")).value.trim();     
+    let plane: string = (<HTMLInputElement>document.getElementById("input_Planes_PTF")).value.trim();
+    let flight: string = (<HTMLInputElement>document.getElementById("input_Flight_PTF")).value.trim();
 
     if (flight.length == 0 || plane.length == 0) {
       this.show_alert = true;
@@ -45,7 +45,7 @@ export class PlaneToFlightComponent implements OnInit {
         flight_id: flight,
         plane: plane,
       };
-      this.service.assignPlaneToFlight(json).subscribe((jsonTransfer) => {
+      this.service_flight.assignBagcartToFlight(json).subscribe((jsonTransfer) => {     // ERROR DE METODO <assignBagcartToFlight>
         const userStr = JSON.stringify(jsonTransfer);
         const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
         if (jsonWEBAPI.http_result == 1) {
@@ -65,7 +65,7 @@ export class PlaneToFlightComponent implements OnInit {
    * getFlights
    */
   public getFlights() {
-    this.service.getFlights().subscribe((jsonTransfer) => {
+    this.service_flight.getFlights().subscribe((jsonTransfer) => {
       const userStr = JSON.stringify(jsonTransfer);
       const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
       if (jsonWEBAPI.http_result == 1) {
@@ -81,7 +81,7 @@ export class PlaneToFlightComponent implements OnInit {
    * getBrands
    */
   public getPlanes() {
-    this.service.getPlanes().subscribe((jsonTransfer) => {
+    this.service_flight.getPlanes().subscribe((jsonTransfer) => {
       const userStr = JSON.stringify(jsonTransfer);
       const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
       if (jsonWEBAPI.http_result == 1) {
@@ -92,6 +92,8 @@ export class PlaneToFlightComponent implements OnInit {
       }
     });
   }
+
+
 
 
 }

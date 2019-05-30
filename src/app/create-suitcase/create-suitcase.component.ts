@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ServiceService } from '../services.service';
+import { BaggageService } from '../services/baggage.service';
 
 @Component({
   selector: 'app-create-suitcase',
@@ -17,9 +17,10 @@ export class CreateSuitcaseComponent implements OnInit {
   colors: String[] = [];
 
 
-  constructor(private service: ServiceService) { }
+  constructor(private service_Baggage: BaggageService) { }
 
   ngOnInit() {
+    this.getColors();
   }
 
   /**
@@ -47,7 +48,7 @@ export class CreateSuitcaseComponent implements OnInit {
         weight: parseFloat(weight),
         color: color
       };
-      this.service.createSuitcase(json).subscribe((jsonTransfer) => {
+      this.service_Baggage.createSuitcase(json).subscribe((jsonTransfer) => {
         const userStr = JSON.stringify(jsonTransfer);
         const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
         if (jsonWEBAPI.http_result == 1) {
@@ -67,7 +68,7 @@ export class CreateSuitcaseComponent implements OnInit {
    * getColors
    */
   public getColors() {
-    this.service.getColors().subscribe((jsonTransfer) => {
+    this.service_Baggage.getColors().subscribe((jsonTransfer) => {
       const userStr = JSON.stringify(jsonTransfer);
       const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
       if (jsonWEBAPI.http_result == 1) {
