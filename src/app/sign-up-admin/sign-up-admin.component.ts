@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ServiceService } from '../services.service';
+import { SignUpService } from '../services/sign-up.service';
 
 @Component({
   selector: 'app-sign-up-admin',
@@ -17,9 +17,9 @@ export class SignUpAdminComponent implements OnInit {
 
   listRole: String[] = [];
 
-  constructor(private service: ServiceService) { }
+  constructor(private service_SignUp: SignUpService) { }
 
-  ngOnInit() { this.getRoles() ; }
+  ngOnInit() { this.getRoles(); }
 
   /**
    * roleCheck
@@ -43,7 +43,7 @@ export class SignUpAdminComponent implements OnInit {
    * getRoles
    */
   public getRoles() {
-    this.service.getRoles().subscribe((jsonTransfer) => {
+    this.service_SignUp.getRoles().subscribe((jsonTransfer) => {
       const userStr = JSON.stringify(jsonTransfer);
       const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
       console.log(jsonWEBAPI);
@@ -101,27 +101,37 @@ export class SignUpAdminComponent implements OnInit {
         password: password,
       };
 
-      this.service.signUpAdmin(json).subscribe((jsonTransfer) => {
+      let i = 0;
+      let str: string = '';
+      this.service_SignUp.signUpAdmin(json).subscribe((jsonTransfer) => {
         const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
+        str = jsonWEBAPI.msg;
         if (jsonWEBAPI.http_result == 1) {
-          const json_role = {
-            roles: this.roleCheck()
-          };
-          this.service.adminSetRole(username, json_role).subscribe((jsonTransferRole) => {
-            const jsonWEBAPI_Role = JSON.parse(JSON.parse(JSON.stringify(jsonTransferRole)));
-            if (jsonWEBAPI_Role.http_result == 1) {
-              this.text_alert = jsonWEBAPI_Role.msg;
-              this.type_alert = 'success';
-            } else {
-              this.text_alert = jsonWEBAPI_Role.msg;
-              this.type_alert = 'danger';
-            }
-          });
+          i = 1;
         } else {
-          this.text_alert = jsonWEBAPI.msg;
-          this.type_alert = 'danger';
+          i = 0;
         }
       });
+
+      if (i = 1) {
+        const json_role = {
+          roles: this.roleCheck()
+        }
+        this.service_SignUp.adminSetRole(username, json_role).subscribe((jsonTransferRole) => {
+          const jsonWEBAPI_Role = JSON.parse(JSON.parse(JSON.stringify(jsonTransferRole)));
+          if (jsonWEBAPI_Role.http_result == 1) {
+            this.text_alert = jsonWEBAPI_Role.msg;
+            this.type_alert = 'success';
+          } else {
+            this.text_alert = jsonWEBAPI_Role.msg;
+            this.type_alert = 'danger';
+          }
+        });
+      } else {
+        this.text_alert = str;
+        this.type_alert = 'danger';
+      }
+
     }
     this.show_alert = true;
   }

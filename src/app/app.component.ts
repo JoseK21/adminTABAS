@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ServiceService } from './services.service';
 import { LogInService } from './services/log-in.service';
 import { SignUpService } from './services/sign-up.service';
 
