@@ -8,18 +8,18 @@ import { FlightService } from '../services/flight.service';
   styleUrls: ['./bagcart-to-flight.component.css']
 })
 export class BagcartToFlightComponent implements OnInit {
-  
+
   // Alert 
   show_alert: boolean = false;
   text_alert: string = '';
   type_alert: string = '';
-  
+
   flights: String[] = [];
   brands: String[] = [];
 
-  constructor(private service_BagCart: BagCartService , private service_Flight: FlightService) { }
-  
-  ngOnInit() {  }
+  constructor(private service_BagCart: BagCartService, private service_Flight: FlightService) { }
+
+  ngOnInit() { }
 
   /**
    * show_Alert
@@ -33,7 +33,7 @@ export class BagcartToFlightComponent implements OnInit {
    */
   public a_BagcartToFlight() {
     let flight: string = (<HTMLInputElement>document.getElementById("input_Flight_BTF")).value.trim();
-    let brand: string = (<HTMLInputElement>document.getElementById("input_Brands_BTF")).value.trim();    
+    let brand: string = (<HTMLInputElement>document.getElementById("input_Brands_BTF")).value.trim();
 
     if (flight.length == 0 || brand.length == 0) {
       this.show_alert = true;
@@ -41,12 +41,12 @@ export class BagcartToFlightComponent implements OnInit {
       this.type_alert = 'warning';
     } else {
       const json = {
-        flight_id: flight,
-        bg_brand: brand,
+        flight_id: Number(flight),
+        bagcart_id: brand,
       };
       this.service_Flight.assignBagcartToFlight(json).subscribe((jsonTransfer) => {
-        const userStr = JSON.stringify(jsonTransfer);
-        const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
+        const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
+        console.log(jsonWEBAPI);
         if (jsonWEBAPI.http_result == 1) {
           this.text_alert = jsonWEBAPI.msg;
           this.type_alert = 'success';
@@ -65,8 +65,8 @@ export class BagcartToFlightComponent implements OnInit {
    */
   public getFlights() {
     this.service_Flight.getFlights().subscribe((jsonTransfer) => {
-      const userStr = JSON.stringify(jsonTransfer);
-      const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
+      const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
+      console.log(jsonWEBAPI);
       if (jsonWEBAPI.http_result == 1) {
         this.flights = jsonWEBAPI.flights;
       } else {
@@ -81,8 +81,8 @@ export class BagcartToFlightComponent implements OnInit {
    */
   public getBrands() {
     this.service_BagCart.getBrands().subscribe((jsonTransfer) => {
-      const userStr = JSON.stringify(jsonTransfer);
-      const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
+      const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
+      console.log(jsonWEBAPI);
       if (jsonWEBAPI.http_result == 1) {
         this.brands = jsonWEBAPI.brands;
       } else {
@@ -91,5 +91,4 @@ export class BagcartToFlightComponent implements OnInit {
       }
     });
   }
-
 }

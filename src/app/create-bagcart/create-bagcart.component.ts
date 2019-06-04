@@ -24,7 +24,7 @@ export class CreateBagcartComponent implements OnInit {
   constructor(private service_BagCart: BagCartService, private service_Flight: FlightService) { }
 
   ngOnInit() {
-
+    this.getBrands();
   }
 
 
@@ -61,8 +61,8 @@ export class CreateBagcartComponent implements OnInit {
         capacity: Number(capacity)
       };
       this.service_BagCart.createBagCart(json).subscribe((jsonTransfer) => {
-        const userStr = JSON.stringify(jsonTransfer);
-        const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
+        const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
+        console.log(jsonWEBAPI);
         if (jsonWEBAPI.http_result == 1) {
           this.text_alert = jsonWEBAPI.msg;
           this.type_alert = 'success';
@@ -81,7 +81,6 @@ export class CreateBagcartComponent implements OnInit {
    */
   public addBrand() {
     let add_brand: string = (<HTMLInputElement>document.getElementById("input_Brand_CB_Add")).value.trim();
-
     if (add_brand.length == 0) {
       this.text_alert_2 = 'Empty spaces';
       this.type_alert_2 = 'warning';
@@ -91,8 +90,8 @@ export class CreateBagcartComponent implements OnInit {
         brand: add_brand,
       };
       this.service_BagCart.addBrand(json).subscribe((jsonTransfer) => {
-        const userStr = JSON.stringify(jsonTransfer);
-        const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
+        const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
+        console.log(jsonWEBAPI);
         if (jsonWEBAPI.http_result == 1) {
           this.text_alert_2 = jsonWEBAPI.msg;
           this.type_alert_2 = 'success';
@@ -111,8 +110,8 @@ export class CreateBagcartComponent implements OnInit {
    */
   public getBrands() {
     this.service_BagCart.getBrands().subscribe((jsonTransfer) => {
-      const userStr = JSON.stringify(jsonTransfer);
-      const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
+      const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
+      console.log(jsonWEBAPI);
       if (jsonWEBAPI.http_result == 1) {
         this.brands = jsonWEBAPI.brands;
       } else {
@@ -127,8 +126,8 @@ export class CreateBagcartComponent implements OnInit {
    */
   public getModels() {
     this.service_Flight.getPlanes().subscribe((jsonTransfer) => {
-      const userStr = JSON.stringify(jsonTransfer);
-      const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
+      const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
+      console.log(jsonWEBAPI);
       if (jsonWEBAPI.http_result == 1) {
         this.models = jsonWEBAPI.models;
       } else {
@@ -137,5 +136,4 @@ export class CreateBagcartComponent implements OnInit {
       }
     });
   }
-
 }

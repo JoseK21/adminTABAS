@@ -49,8 +49,8 @@ export class CreateSuitcaseComponent implements OnInit {
         color: color
       };
       this.service_Baggage.createSuitcase(json).subscribe((jsonTransfer) => {
-        const userStr = JSON.stringify(jsonTransfer);
-        const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
+        const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
+        console.log(jsonWEBAPI);
         if (jsonWEBAPI.http_result == 1) {
           this.text_alert = jsonWEBAPI.msg;
           this.type_alert = 'success';
@@ -69,15 +69,14 @@ export class CreateSuitcaseComponent implements OnInit {
    */
   public getColors() {
     this.service_Baggage.getColors().subscribe((jsonTransfer) => {
-      const userStr = JSON.stringify(jsonTransfer);
-      const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
+      const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
+      console.log(jsonWEBAPI);
       if (jsonWEBAPI.http_result == 1) {
         this.colors = jsonWEBAPI.colors;
-      }else{
+      } else {
         this.colors = [];
         this.colors.push(jsonWEBAPI.msg)
       }
     });
   }
-
 }

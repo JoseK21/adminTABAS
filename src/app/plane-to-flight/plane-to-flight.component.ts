@@ -42,12 +42,12 @@ export class PlaneToFlightComponent implements OnInit {
       this.type_alert = 'warning';
     } else {
       const json = {
-        flight_id: flight,
-        plane: plane,
+        flight: flight,
+        model: plane,
       };
-      this.service_flight.assignBagcartToFlight(json).subscribe((jsonTransfer) => {     // ERROR DE METODO <assignBagcartToFlight>
-        const userStr = JSON.stringify(jsonTransfer);
-        const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
+      this.service_flight.assignPlaneToFlight(json).subscribe((jsonTransfer) => {     // ERROR DE METODO <assignBagcartToFlight>
+        const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
+        console.log(jsonWEBAPI);
         if (jsonWEBAPI.http_result == 1) {
           this.text_alert = jsonWEBAPI.msg;
           this.type_alert = 'success';
@@ -66,8 +66,8 @@ export class PlaneToFlightComponent implements OnInit {
    */
   public getFlights() {
     this.service_flight.getFlights().subscribe((jsonTransfer) => {
-      const userStr = JSON.stringify(jsonTransfer);
-      const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
+      const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
+      console.log(jsonWEBAPI);
       if (jsonWEBAPI.http_result == 1) {
         this.flights = jsonWEBAPI.flights;
       } else {
@@ -82,18 +82,14 @@ export class PlaneToFlightComponent implements OnInit {
    */
   public getPlanes() {
     this.service_flight.getPlanes().subscribe((jsonTransfer) => {
-      const userStr = JSON.stringify(jsonTransfer);
-      const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
+      const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
+      console.log(jsonWEBAPI);
       if (jsonWEBAPI.http_result == 1) {
-        this.planes = jsonWEBAPI.planes;
+        this.planes = jsonWEBAPI.airplanes;
       } else {
         this.planes = [];
         this.planes.push(jsonWEBAPI.msg)
       }
     });
   }
-
-
-
-
 }

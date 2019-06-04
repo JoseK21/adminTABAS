@@ -7,7 +7,8 @@ const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/js
 })
 export class LogInService {
 
-  private api = 'http://localhost:51208/tabas/';
+  private api = 'https://tabas-api.azurewebsites.net/tabas/';
+
 
   constructor(private http: HttpClient) { }
 

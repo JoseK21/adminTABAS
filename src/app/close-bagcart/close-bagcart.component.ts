@@ -9,8 +9,8 @@ import { FlightService } from '../services/flight.service';
 })
 export class CloseBagcartComponent implements OnInit {
 
-  
-  
+
+
   // Alert 
   show_alert: boolean = false;
   text_alert: string = '';
@@ -22,9 +22,11 @@ export class CloseBagcartComponent implements OnInit {
 
   flight_IDs: String[] = [];
 
-  constructor(private service_BagCart: BagCartService , private service_Flight: FlightService) { }
+  constructor(private service_BagCart: BagCartService, private service_Flight: FlightService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.getFlights();
+  }
 
   /**
    * show_Alert
@@ -44,8 +46,8 @@ export class CloseBagcartComponent implements OnInit {
       this.type_alert = 'warning';
     } else {
       this.service_BagCart.closeBagCart(flight_id).subscribe((jsonTransfer) => {
-        const userStr = JSON.stringify(jsonTransfer);
-        const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
+        const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
+        console.log(jsonWEBAPI);
         if (jsonWEBAPI.http_result == 1) {
           this.text_alert = jsonWEBAPI.seal;
           this.type_alert = 'primary';
@@ -64,17 +66,14 @@ export class CloseBagcartComponent implements OnInit {
    */
   public getFlights() {
     this.service_Flight.getFlights().subscribe((jsonTransfer) => {
-      const userStr = JSON.stringify(jsonTransfer);
-      const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
-
+      const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
       console.log(jsonWEBAPI);
       if (jsonWEBAPI.http_result == 1) {
         this.flight_IDs = jsonWEBAPI.flights;
       } else {
         this.flight_IDs = [];
-        this.flight_IDs.push(jsonWEBAPI.msg)
+        this.flight_IDs.push("ERROR")
       }
     });
   }
-
 }

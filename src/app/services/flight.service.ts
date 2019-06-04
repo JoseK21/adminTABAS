@@ -7,7 +7,8 @@ const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/js
 })
 export class FlightService {
 
-  private api = 'http://localhost:51208/tabas/';
+  private api = 'https://tabas-api.azurewebsites.net/tabas/';
+
 
   constructor(private http: HttpClient) { }
 
@@ -37,11 +38,19 @@ export class FlightService {
    * Get all Flights
    */
   getFlights() {
-    const path = `${this.api}flights`;  // tabas/flights/unassigned - tabas/flights/active
+    const path = `${this.api}flights/active`;
     console.log(path);
     return this.http.get(path);
   }
 
+  /**
+   * Get all Flights Unassigned
+   */
+  getFlightsUnassigned() {
+    const path = `${this.api}flights/unassigned`;  
+    console.log(path);
+    return this.http.get(path);
+  }
 
   /**
    * Assign Bagcart To Flight
@@ -50,6 +59,16 @@ export class FlightService {
   assignBagcartToFlight(json: any) {
     console.log(JSON.parse(JSON.stringify(json)));
     const path = `${this.api}flights/bagcart/assign`;
+    return this.http.post(path, "'" + JSON.stringify(json) + "'", httpOptions);
+  }
+
+  /**
+   * Assign Bagcart To Flight
+   * @param json {"flight_id": X, "bg_brand": XXXX}
+   */
+  assignPlaneToFlight(json: any) {
+    console.log(JSON.parse(JSON.stringify(json)));
+    const path = `${this.api}flight/plane/assign`;
     return this.http.post(path, "'" + JSON.stringify(json) + "'", httpOptions);
   }
 

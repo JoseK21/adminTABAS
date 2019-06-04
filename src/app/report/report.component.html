@@ -8,7 +8,7 @@
         <h5 class="card-title">Suitcases per customer</h5>
         <!-- Large modal -->
         <button type="button" class="btn  btn-outline-success btn-block" data-toggle="modal"
-          data-target=".bd-example-modal-lg">Generate</button>
+          data-target=".bd-example-modal-lg" (click)="reportCustumer()">Generate</button>
 
         <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
           aria-hidden="true">
@@ -19,14 +19,14 @@
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">Client</th>
-                    <th scope="col">Baggage</th>
+                    <th scope="col">Baggages</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr >
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
+                  <tr *ngFor="let item of baggages;  let i = index">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{item.user}}</td>
+                    <td>{{item.count}}</td>
                   </tr>
                 </tbody>
               </table>
@@ -43,39 +43,43 @@
       <div class="card-body">
         <h5 class="card-title">Baggage conciliation</h5>
         <!-- Large modal -->
+        <div class="form-group">
+          <label for="input_Flight_R">Flight</label>
+          <select id="input_Flight_R" class="form-control">
+            <option *ngFor="let flight of flights;">{{flight}}</option>
+          </select>
+        </div>
         <button type="button" class="btn  btn-outline-success btn-block" data-toggle="modal"
-          data-target=".bd-example-modal-xl_1">Generate</button>
-
+          data-target=".bd-example-modal-xl_1" (click)="reportBaggage()">Generate</button>
         <div class="modal fade bd-example-modal-xl_1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
           aria-hidden="true">
           <div class="modal-dialog modal-xl">
             <div class="modal-content">
-                <table class="table">
-                    <thead class="thead-dark">
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Flight</th>
-                        <th scope="col">Plane</th>
-                        <th scope="col">Capacity</th>
-                        <th scope="col">Baggages of the flight</th>
-                        <th scope="col">Suitcases in BagCarts</th>
-                        <th scope="col">Baggages on the plane</th>
-                        <th scope="col">Suitcases rejected</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>Otto</td>
-                      </tr>
-                    </tbody>
-                </table>
+              <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Flight</th>
+                    <th scope="col">Plane</th>
+                    <th scope="col">Capacity</th>
+                    <th scope="col">Baggages of the flight</th>
+                    <th scope="col">Suitcases in BagCarts</th>
+                    <th scope="col">Baggages on the plane</th>
+                    <th scope="col">Suitcases rejected</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let itemBI of baggageInfo;  let i = index">
+                    <th scope="row">{{i}}</th>
+                    <td>{{itemBI.flight}}</td>
+                    <td>{{itemBI.model}}</td>
+                    <td>{{itemBI.weight}}</td>
+                    <td>{{itemBI.total_suitcase}}</td>
+                    <td>{{itemBI.suitcase_rejected}}</td>
+                    <td>{{itemBI.suitcase_acepted}}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
