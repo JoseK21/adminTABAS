@@ -13,7 +13,7 @@ export class AppComponent {
   password_show: string = 'password';
 
   // Window
-  window: string = 'Menu'; // or Menu/LogIn
+  window: string = 'LogIn'; // or Menu/LogIn
 
   // Alert 
   show_alert: boolean = false;
@@ -104,6 +104,7 @@ export class AppComponent {
         const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
         if (jsonWEBAPI.http_result == 1) {
           this.window = 'Menu';
+          this.show_alert = false;
         } else {
           this.text_alert = jsonWEBAPI.msg;
           this.type_alert = 'danger';

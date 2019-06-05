@@ -5,7 +5,7 @@
       <form>
         <div class="form-group">
           <label for="input_Brand_CB">Brand</label>
-          <select id="input_Brand_CB" class="form-control">
+          <select id="input_Brand_CB" class="form-control" (click)="getBrands()">
             <option *ngFor="let brand of brands;">{{brand}}</option>
           </select>
         </div>

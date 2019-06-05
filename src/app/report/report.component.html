@@ -62,21 +62,21 @@
                     <th scope="col">Flight</th>
                     <th scope="col">Plane</th>
                     <th scope="col">Capacity</th>
-                    <th scope="col">Baggages of the flight</th>
                     <th scope="col">Suitcases in BagCarts</th>
                     <th scope="col">Baggages on the plane</th>
                     <th scope="col">Suitcases rejected</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let itemBI of baggageInfo;  let i = index">
-                    <th scope="row">{{i}}</th>
-                    <td>{{itemBI.flight}}</td>
-                    <td>{{itemBI.model}}</td>
-                    <td>{{itemBI.weight}}</td>
-                    <td>{{itemBI.total_suitcase}}</td>
-                    <td>{{itemBI.suitcase_rejected}}</td>
-                    <td>{{itemBI.suitcase_acepted}}</td>
+                  <!-- <tr *ngFor="let itemBI of baggageInfo;  let i = index">  -->
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>{{baggageInfo.flight}}</td>
+                    <td>{{baggageInfo.model}}</td>
+                    <td>{{baggageInfo.weight}}</td>
+                    <td>{{baggageInfo.total_suitcase}}</td>
+                    <td>{{baggageInfo.suitcase_rejected}}</td>
+                    <td>{{baggageInfo.suitcase_acepted}}</td>
                   </tr>
                 </tbody>
               </table>

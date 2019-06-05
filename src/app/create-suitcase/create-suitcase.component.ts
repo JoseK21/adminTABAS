@@ -55,6 +55,8 @@ export class CreateSuitcaseComponent implements OnInit {
           this.text_alert = jsonWEBAPI.msg;
           this.type_alert = 'success';
           this.show_alert = true;
+          (<HTMLInputElement>document.getElementById("input_Username_CS")).value = "";
+          (<HTMLInputElement>document.getElementById("input_Weight_CS")).value = "";
         } else {
           this.text_alert = jsonWEBAPI.msg;
           this.type_alert = 'danger';

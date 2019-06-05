@@ -64,8 +64,16 @@ export class ReportComponent implements OnInit {
       const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
       console.log(jsonWEBAPI);
       if (jsonWEBAPI.http_result == 1) {
+
+        
         this.baggageInfo = jsonWEBAPI;
-        // this.baggageInfo = JSON.parse("[" + jsonWEBAPI+ "]"); 
+        for(var key in jsonWEBAPI){
+          console.log(jsonWEBAPI[key]);
+        }
+
+        alert(this.baggageInfo);
+        
+
       } else {
         alert("Error - Get Baggage by flight");
       }
