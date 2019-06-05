@@ -20,7 +20,7 @@ export class PlaneToFlightComponent implements OnInit {
 
   constructor(private service_flight: FlightService) { }
 
-  ngOnInit() { }
+  ngOnInit() {  this.getFlights(); this.getPlanes()}
 
   /**
    * show_Alert

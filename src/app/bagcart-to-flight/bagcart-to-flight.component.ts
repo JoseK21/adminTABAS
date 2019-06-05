@@ -16,10 +16,12 @@ export class BagcartToFlightComponent implements OnInit {
 
   flights: String[] = [];
   brands: String[] = [];
+  bagCartsId: String[] = [];
+  seccions: String[] = [];
 
   constructor(private service_BagCart: BagCartService, private service_Flight: FlightService) { }
 
-  ngOnInit() { }
+  ngOnInit() { this.getFlights(); this.getBagCartsID()}
 
   /**
    * show_Alert
@@ -33,16 +35,16 @@ export class BagcartToFlightComponent implements OnInit {
    */
   public a_BagcartToFlight() {
     let flight: string = (<HTMLInputElement>document.getElementById("input_Flight_BTF")).value.trim();
-    let brand: string = (<HTMLInputElement>document.getElementById("input_Brands_BTF")).value.trim();
+    let bagCartId: string = (<HTMLInputElement>document.getElementById("input_BagCarts_BTF")).value.trim();
 
-    if (flight.length == 0 || brand.length == 0) {
+    if (flight.length == 0 || bagCartId.length == 0) {
       this.show_alert = true;
       this.text_alert = 'Empty spaces';
       this.type_alert = 'warning';
     } else {
       const json = {
         flight_id: Number(flight),
-        bagcart_id: brand,
+        bagcart_id:  Number(bagCartId),
       };
       this.service_Flight.assignBagcartToFlight(json).subscribe((jsonTransfer) => {
         const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
@@ -90,5 +92,47 @@ export class BagcartToFlightComponent implements OnInit {
         this.brands.push(jsonWEBAPI.msg)
       }
     });
+  }
+
+  
+   /**
+   * get BagCarts IDs
+   */
+  public getBagCartsID() {
+    this.service_BagCart.getBagCartsIDBrands().subscribe((jsonTransfer) => {
+      const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
+      console.log(jsonWEBAPI);
+      if (jsonWEBAPI.http_result == 1) {
+        this.bagCartsId = jsonWEBAPI.bagcarts;
+      } else {
+        this.bagCartsId = [];
+        this.bagCartsId.push("Error")
+      }
+    });
+  }
+
+  /**
+   * get seccion of a Plane
+   */
+  public getSeccion() {
+    let flight: string = (<HTMLInputElement>document.getElementById("input_Flight_BTF")).value.trim();
+
+    if (flight == '') {
+      this.text_alert = 'Please select a Flight';
+      this.type_alert = 'warning';
+      this.show_alert = true;
+    } else {
+      this.service_Flight.getSeccions(flight).subscribe((jsonTransfer) => {
+        const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
+        console.log(jsonWEBAPI);
+        if (jsonWEBAPI.http_result == 1) {
+          this.seccions = jsonWEBAPI.sections;
+        } else {
+          this.seccions = [];
+          this.seccions.push(jsonWEBAPI.msg)
+        }
+      });
+    }
+
   }
 }

@@ -5,19 +5,29 @@
       <form>
         <div class="form-group">
           <label for="input_Flight_BTF">Flight</label>
-          <select id="input_Flight_BTF" class="form-control" (click)="getFlights()">
+          <select id="input_Flight_BTF" class="form-control">
             <option *ngFor="let flight of flights;">{{flight}}</option>
           </select>
         </div>
+        <!--
         <div class="form-group">
-          <label for="input_Brands_BTF">BagCarts</label>
-          <select id="input_Brands_BTF" class="form-control" (click)="getBrands()">
-            <option *ngFor="let brand of brands;">{{brand}}</option>
+          <button type="button" class="btn btn-outline-primary btn-block" (click)="getSeccion()">Get Seccions</button>
+        </div>
+        <div class="form-group">
+          <label for="input_Seccion_BTF">Seccion</label>
+          <select id="input_Seccion_BTF" class="form-control">
+            <option *ngFor="let seccion of seccions;">{{seccion}}</option>
+          </select>
+        </div>
+        -->
+        <div class="form-group">
+          <label for="input_BagCarts_BTF">BagCarts (Id)</label>
+          <select id="input_BagCarts_BTF" class="form-control">
+            <option *ngFor="let bagCarts of bagCartsId;">{{bagCarts}}</option>
           </select>
         </div>
 
-        <button type="button" class="btn btn-primary btn-block"
-          (click)="a_BagcartToFlight()">Assign</button>
+        <button type="button" class="btn btn-primary btn-block" (click)="a_BagcartToFlight()">Assign</button>
 
         <!-- ALERT -->
         <br>

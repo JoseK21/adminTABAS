@@ -53,7 +53,7 @@ export class BagCartService {
   }
 
   /**
-   * Get all Brands
+   * Get all BagCart
    */
   getBagCarts() {
     const path = `${this.api}bagcarts`;
@@ -61,6 +61,15 @@ export class BagCartService {
     return this.http.get(path);
   }
 
+
+  /**
+   * Get all BagCarts IDs
+   */
+  getBagCartsIDBrands() {
+    const path = `${this.api}bagcarts`;
+    console.log(path);
+    return this.http.get(path);
+  }
 
 
 

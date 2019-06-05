@@ -63,17 +63,8 @@ export class ReportComponent implements OnInit {
     this.service_Report.getBaggage(Number(f)).subscribe((jsonTransfer) => {
       const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
       console.log(jsonWEBAPI);
-      if (jsonWEBAPI.http_result == 1) {
-
-        
+      if (jsonWEBAPI.http_result == 1) {        
         this.baggageInfo = jsonWEBAPI;
-        for(var key in jsonWEBAPI){
-          console.log(jsonWEBAPI[key]);
-        }
-
-        alert(this.baggageInfo);
-        
-
       } else {
         alert("Error - Get Baggage by flight");
       }

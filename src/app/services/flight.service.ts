@@ -44,6 +44,15 @@ export class FlightService {
   }
 
   /**
+   * Get seccions of a plane
+   */
+  getSeccions(flight:string) {
+    const path = `${this.api}${flight}/sections`;
+    console.log(path);
+    return this.http.get(path);
+  }
+
+  /**
    * Get all Flights Unassigned
    */
   getFlightsUnassigned() {
@@ -58,7 +67,7 @@ export class FlightService {
    */
   assignBagcartToFlight(json: any) {
     console.log(JSON.parse(JSON.stringify(json)));
-    const path = `${this.api}flights/bagcart/assign`;
+    const path = `${this.api}flights/bagcart/assign`; 
     return this.http.post(path, "'" + JSON.stringify(json) + "'", httpOptions);
   }
 
