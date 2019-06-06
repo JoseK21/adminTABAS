@@ -9,8 +9,9 @@ import { FlightService } from '../services/flight.service';
 })
 export class ReportComponent implements OnInit {
   baggages: [];  // Report Baggage by CLient
-  baggageInfo = []; // Report Baggege by flight
+  baggageInfo:String[] = []; // Report Baggege by flight
   flights: []; // List of flights
+  list =  []; // List of flights
 
   list_flights = [];  //Default
 
@@ -64,9 +65,22 @@ export class ReportComponent implements OnInit {
       const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
       console.log(jsonWEBAPI);
       if (jsonWEBAPI.http_result == 1) {        
-        this.baggageInfo = jsonWEBAPI;
+        // this.baggageInfo = jsonWEBAPI;
+        this.list = [];
+        this.list.push(jsonWEBAPI.flight);
+        this.list.push(jsonWEBAPI.model);
+        this.list.push(jsonWEBAPI.weight);
+        this.list.push(jsonWEBAPI.total_suitcase);
+        this.list.push(jsonWEBAPI.suitcase_rejected);
+        this.list.push(jsonWEBAPI.suitcase_acepted);
       } else {
-        alert("Error - Get Baggage by flight");
+        this.list = [];
+        this.list.push('-E-');
+        this.list.push('-E-');
+        this.list.push('-E-');        
+        this.list.push('-E-');
+        this.list.push('-E-');
+        this.list.push('-E-');
       }
     });
   }
