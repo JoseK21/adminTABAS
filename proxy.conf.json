@@ -1,0 +1,7 @@
+{
+    "/tabas/*": {
+        "target": "https://tabas-api.azurewebsites.net",
+        "secure": false,
+        "changeOrigin": true
+    }
+}

@@ -9,8 +9,8 @@ export class ServiceReportService {
 
   constructor(private http: HttpClient) { }
 
-  private api = 'https://tabas-api.azurewebsites.net/tabas/';
-
+  // private api = 'https://tabas-api.azurewebsites.net/tabas/';
+  private api = '/tabas/';
 
   /**
    * Get Baggage By Client
