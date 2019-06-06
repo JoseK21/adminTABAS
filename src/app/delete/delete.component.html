@@ -1,0 +1,85 @@
+<br>
+<br>
+<div class="container-fluid">
+  <br><br>
+  <div class="row justify-content-between align-items-center">
+    <div class="col-sm-2">
+      <div class="card">
+        <div class="card-body">
+          <div class="form-group">
+            <label for="input_Airplane_Del">Airplane</label>
+            <select id="input_Airplane_Del" class="form-control">
+                <option *ngFor="let a of planes;">{{a}}</option>
+              </select>
+          </div>
+          <input type="button" class="btn btn-block btn-danger" id="input_Del_" value="Delete">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="card">
+        <div class="card-body">
+          <div class="form-group">
+            <label for="input_BagCart_Del">BagCart</label>
+            <select id="input_BagCart_Del" class="form-control">
+                <option *ngFor="let b of bagCartsId;">{{b}}</option>
+              </select>
+          </div>
+          <input type="button" class="btn btn-block btn-danger" id="input_Del_" value="Delete">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="card">
+        <div class="card-body">
+          <div class="form-group">
+            <label for="input_Color_Del">Color</label>
+            <select id="input_Color_Del" class="form-control">
+                <option *ngFor="let c of colors;">{{c}}</option>
+              </select>
+          </div>
+          <input type="button" class="btn btn-block btn-danger" id="input_Del_" value="Delete">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="card">
+        <div class="card-body">
+          <div class="form-group">
+            <label for="input_Flight_Del">Flight</label>
+            <select id="input_Flight_Del" class="form-control">
+                <option *ngFor="let f of flights;">{{f}}</option>
+              </select>
+          </div>
+          <input type="button" class="btn btn-block btn-danger" id="input_Del_" value="Delete">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="card">
+        <div class="card-body">
+          <div class="form-group">
+            <label for="input_Role_Del">Role</label>
+            <select id="input_Role_Del" class="form-control">
+                <option *ngFor="let r of listRole;">{{r}}</option>
+              </select>
+          </div>
+          <input type="button" class="btn btn-block btn-danger" id="input_Del_" value="Delete">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<br>
+<div class="form-row justify-content-center" *ngIf="show_alert">
+  <div class="col-10">
+    <div class="alert alert-{{type_alert}} alert-dismissible fade show" role="alert">
+      <strong>{{text_alert}}</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="show_Alert(false)">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+</div>

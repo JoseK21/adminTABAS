@@ -11,6 +11,7 @@ import { BagcartToFlightComponent } from './bagcart-to-flight/bagcart-to-flight.
 import { CloseBagcartComponent } from './close-bagcart/close-bagcart.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReportComponent } from './report/report.component';
+import { DeleteComponent } from './delete/delete.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ReportComponent } from './report/report.component';
     BagcartToFlightComponent,
     CloseBagcartComponent,
     ReportComponent,
+    DeleteComponent,
   ],
   imports: [
     BrowserModule,

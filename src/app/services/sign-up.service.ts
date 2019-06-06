@@ -35,7 +35,6 @@ export class SignUpService {
     return this.http.post(path, "'" + JSON.stringify(json) + "'", httpOptions);
   }
 
-
   /**
    * Get all Roles
    */
@@ -44,6 +43,4 @@ export class SignUpService {
     console.log(path);
     return this.http.get(path);
   }
-
-
 }

@@ -8,24 +8,27 @@ import { BagcartToFlightComponent } from './bagcart-to-flight/bagcart-to-flight.
 import { CloseBagcartComponent } from './close-bagcart/close-bagcart.component';
 import { AppComponent } from './app.component';
 import { ReportComponent } from './report/report.component';
+import { DeleteComponent } from './delete/delete.component';
 
 const routes: Routes = [
-  {path:"SignUpAdmin" , component:SignUpAdminComponent},
+  { path: "SignUpAdmin", component: SignUpAdminComponent },
 
-  {path:"C_Suitcases" , component:CreateSuitcaseComponent},
-  {path:"C_BagCart" , component:CreateBagcartComponent},
+  { path: "C_Suitcases", component: CreateSuitcaseComponent },
+  { path: "C_BagCart", component: CreateBagcartComponent },
 
-  {path:"A_PlaneToFlight" , component:PlaneToFlightComponent},
-  {path:"A_BagCartToFlight" , component:BagcartToFlightComponent},
+  { path: "A_PlaneToFlight", component: PlaneToFlightComponent },
+  { path: "A_BagCartToFlight", component: BagcartToFlightComponent },
 
-  {path:"Report" , component:ReportComponent},
+  { path: "Report", component: ReportComponent },
 
-  {path:"Close_BagCart" , component:CloseBagcartComponent},
+  { path: "Close_BagCart", component: CloseBagcartComponent },
 
- // { path: '', component: AppComponent },  
+  { path: "Delete", component: DeleteComponent },
+  
+  // { path: '', component: AppComponent },  
 
   { path: '**', pathMatch: 'full', redirectTo: 'pageNotFound' }
-  
+
 ];
 
 @NgModule({

@@ -7,11 +7,10 @@ const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/js
 })
 export class LogInService {
 
- // private api = 'https://tabas-api.azurewebsites.net/tabas/';
- private api = '/tabas/';
+  // private api = 'https://tabas-api.azurewebsites.net/tabas/';
+  private api = '/tabas/';
 
   constructor(private http: HttpClient) { }
-
 
   /**
    * Log In Admin
@@ -22,7 +21,4 @@ export class LogInService {
     const path = `${this.api}login`;
     return this.http.post(path, "'" + JSON.stringify(json) + "'", httpOptions);
   }
-
-
-
 }

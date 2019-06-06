@@ -13,7 +13,7 @@ export class AppComponent {
   password_show: string = 'password';
 
   // Window
-  window: string = 'LogIn'; // or Menu/LogIn
+  window: string = 'Menu'; // or Menu/LogIn
 
   // Alert 
   show_alert: boolean = false;
