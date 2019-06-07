@@ -12,24 +12,24 @@ export class DeleteServiceService {
 
   constructor(private http: HttpClient) { }
 
-  deleteAirplane(airplane:string) {
+  deleteAirplane(airplane: string) {
     const path = `${this.api}delete/airplane/${airplane}`;
-    return this.http.delete(path);
+    return this.http.post(path, "", httpOptions);
   }
-  deleteBagCart(bagcart:string) {
+  deleteBagCart(bagcart: string) {
     const path = `${this.api}delete/bagcart/${bagcart}`;
-    return this.http.delete(path);
+    return this.http.post(path, "", httpOptions);
   }
-  deleteColor(color:string) {
+  deleteColor(color: string) {
     const path = `${this.api}delete/colors/${color}`;
-    return this.http.delete(path);
+    return this.http.post(path, "", httpOptions);
   }
-  deleteFlight(flight:string) {
+  deleteFlight(flight: string) {
     const path = `${this.api}delete/flights/${flight}`;
-    return this.http.delete(path);
+    return this.http.post(path, "", httpOptions);
   }
-  deleteRole(role:string) {
+  deleteRole(role: string) {
     const path = `${this.api}delete/roles/${role}`;
-    return this.http.delete(path);
+    return this.http.post(path, "", httpOptions);
   }
 }
