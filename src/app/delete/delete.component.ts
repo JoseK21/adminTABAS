@@ -110,6 +110,49 @@ export class DeleteComponent implements OnInit {
     
   }
 
+  /**
+   * getBrands
+   */
+  public deletePlanes() {
+    let dataToDelete: string = (<HTMLInputElement>document.getElementById("input_Airplane_Del")).value.trim();
+    if (dataToDelete.length == 0) {
+      this.show_alert = true;
+      this.text_alert = 'Flight Id entry blank';
+      this.type_alert = 'warning';
+    } else {
+      this.service_delete.deleteAirplane(dataToDelete).subscribe((jsonTransfer) => {
+        const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
+        console.log(jsonWEBAPI);
+        if (jsonWEBAPI.http_result == 1) {
+          this.planes = jsonWEBAPI.airplanes;
+        } else {
+          this.planes = [];
+        }
+      });
+    }
+  }
+
+  /**
+  * get BagCarts IDs
+  */
+ public deleteBagCartsID() {
+  let dataToDelete: string = (<HTMLInputElement>document.getElementById("input_BagCart_Del")).value.trim();
+  if (dataToDelete.length == 0) {
+    this.show_alert = true;
+    this.text_alert = 'Flight Id entry blank';
+    this.type_alert = 'warning';
+  } else {
+    this.service_delete.deleteBagCart(dataToDelete).subscribe((jsonTransfer) => {
+      const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
+      console.log(jsonWEBAPI);
+      if (jsonWEBAPI.http_result == 1) {
+        this.bagCartsId = jsonWEBAPI.bagcarts;
+      } else {
+        this.bagCartsId = [];
+      }
+    });
+  }
+}
   
   /**
    * getColors
@@ -157,27 +200,7 @@ export class DeleteComponent implements OnInit {
   }
 
 
-  /**
-   * getBrands
-   */
-  public deletePlanes() {
-    let dataToDelete: string = (<HTMLInputElement>document.getElementById("input_Airplane_Del")).value.trim();
-    if (dataToDelete.length == 0) {
-      this.show_alert = true;
-      this.text_alert = 'Flight Id entry blank';
-      this.type_alert = 'warning';
-    } else {
-      this.service_delete.deleteAirplane(dataToDelete).subscribe((jsonTransfer) => {
-        const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
-        console.log(jsonWEBAPI);
-        if (jsonWEBAPI.http_result == 1) {
-          this.planes = jsonWEBAPI.airplanes;
-        } else {
-          this.planes = [];
-        }
-      });
-    }
-  }
+  
 
 
   /**
@@ -202,25 +225,5 @@ export class DeleteComponent implements OnInit {
     }
   }
 
-  /**
-  * get BagCarts IDs
-  */
-  public deleteBagCartsID() {
-    let dataToDelete: string = (<HTMLInputElement>document.getElementById("input_BagCart_Del")).value.trim();
-    if (dataToDelete.length == 0) {
-      this.show_alert = true;
-      this.text_alert = 'Flight Id entry blank';
-      this.type_alert = 'warning';
-    } else {
-      this.service_delete.deleteBagCart(dataToDelete).subscribe((jsonTransfer) => {
-        const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
-        console.log(jsonWEBAPI);
-        if (jsonWEBAPI.http_result == 1) {
-          this.bagCartsId = jsonWEBAPI.bagcarts;
-        } else {
-          this.bagCartsId = [];
-        }
-      });
-    }
-  }
+  
 }

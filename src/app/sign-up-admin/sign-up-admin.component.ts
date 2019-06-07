@@ -67,7 +67,7 @@ export class SignUpAdminComponent implements OnInit {
       });
       this.assingRoles(username);
     }
-    this.show_alert = true;
+    
   }
 
   /**
@@ -100,6 +100,7 @@ export class SignUpAdminComponent implements OnInit {
       this.text_alert = this.str;
       this.type_alert = 'danger';
     }
+    this.show_alert = true;
   }
 
   /**

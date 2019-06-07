@@ -25,7 +25,7 @@ export class AppComponent {
 
   listRole: String[] = [];
 
-  constructor(private service_SignUp: SignUpService , private service_LogIn: LogInService) { }
+  constructor(private service_SignUp: SignUpService, private service_LogIn: LogInService) { }
 
   ngOnInit() { this.getRoles() }
 
@@ -105,6 +105,7 @@ export class AppComponent {
         if (jsonWEBAPI.http_result == 1) {
           this.window = 'Menu';
           this.show_alert = false;
+          this.showImage = true;
         } else {
           this.text_alert = jsonWEBAPI.msg;
           this.type_alert = 'danger';

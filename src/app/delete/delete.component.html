@@ -12,7 +12,7 @@
                 <option *ngFor="let a of planes;">{{a}}</option>
               </select>
           </div>
-          <input type="button" class="btn btn-block btn-danger" id="input_Del_" value="Delete">
+          <input type="button" class="btn btn-block btn-danger" value="Delete" (click)="deletePlanes()">
         </div>
       </div>
     </div>
@@ -25,7 +25,7 @@
                 <option *ngFor="let b of bagCartsId;">{{b}}</option>
               </select>
           </div>
-          <input type="button" class="btn btn-block btn-danger" id="input_Del_" value="Delete">
+          <input type="button" class="btn btn-block btn-danger" value="Delete" (click)="deleteBagCartsID()">
         </div>
       </div>
     </div>
@@ -38,7 +38,7 @@
                 <option *ngFor="let c of colors;">{{c}}</option>
               </select>
           </div>
-          <input type="button" class="btn btn-block btn-danger" id="input_Del_" value="Delete">
+          <input type="button" class="btn btn-block btn-danger" value="Delete" (click)="deleteColors()">
         </div>
       </div>
     </div>
@@ -51,7 +51,7 @@
                 <option *ngFor="let f of flights;">{{f}}</option>
               </select>
           </div>
-          <input type="button" class="btn btn-block btn-danger" id="input_Del_" value="Delete">
+          <input type="button" class="btn btn-block btn-danger" value="Delete" (click)="deleteFlights()">
         </div>
       </div>
     </div>
@@ -64,7 +64,7 @@
                 <option *ngFor="let r of listRole;">{{r}}</option>
               </select>
           </div>
-          <input type="button" class="btn btn-block btn-danger" id="input_Del_" value="Delete">
+          <input type="button" class="btn btn-block btn-danger" value="Delete" (click)="deleteRoles()">
         </div>
       </div>
     </div>

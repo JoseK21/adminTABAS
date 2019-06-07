@@ -66,7 +66,7 @@ export class BagcartToFlightComponent implements OnInit {
    * getFlights
    */
   public getFlights() {
-    this.service_Flight.getFlights().subscribe((jsonTransfer) => {
+    this.service_Flight.getFlightsUnassigned().subscribe((jsonTransfer) => {
       const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
       console.log(jsonWEBAPI);
       if (jsonWEBAPI.http_result == 1) {
