@@ -7,13 +7,11 @@ const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/js
   providedIn: 'root'
 })
 export class BagCartService {
-
   private api = 'https://tabas-api.azurewebsites.net/tabas/';
   constructor(private http: HttpClient) { }
 
-
   /**
-   * createBagCart
+   * Create BagCart
    * @param json '{"brand":"XXX", "model": XXXX, "capacity": XXX}'
    */
   createBagCart(json: any) {
@@ -23,8 +21,8 @@ export class BagCartService {
   }
 
   /**
-   * addBrand
-   * @param json '{"brand":"XXX"}' MAYBE
+   * Add Brand
+   * @param json '{"brand":"XXX"}'
    */
   addBrand(json: any) {
     console.log(JSON.parse(JSON.stringify(json)));
@@ -42,17 +40,7 @@ export class BagCartService {
   }
 
   /**
-   * Close a BagCart by the Flight ID
-   * @param flightID Id of Flight to close
-   */
-  closeBagCart(flightID: string) {
-    const path = `${this.api}bagcart/${flightID}/close`;
-    console.log(path);
-    return this.http.get(path);
-  }
-
-  /**
-   * Get all BagCart
+   * Get all BagCarts
    */
   getBagCarts() {
     const path = `${this.api}bagcarts`;
@@ -70,7 +58,15 @@ export class BagCartService {
     return this.http.get(path);
   }
 
-
+  /**
+     * Close a BagCart by the Flight ID
+     * @param flightID
+     */
+  closeBagCart(flightID: string) {
+    const path = `${this.api}bagcart/${flightID}/close`;
+    console.log(path);
+    return this.http.get(path);
+  }
 
 
 

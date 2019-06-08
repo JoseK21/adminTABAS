@@ -23,6 +23,7 @@ export class AppComponent {
   // Main View
   showImage: boolean = true;
 
+  //Lists
   listRole: String[] = [];
 
   constructor(private service_SignUp: SignUpService, private service_LogIn: LogInService) { }
@@ -31,14 +32,14 @@ export class AppComponent {
 
   /**
    * Show Logo
-   * @param show Boolean
+   * @param show 
    */
   imageView(show: boolean) {
     this.showImage = show
   }
 
   /**
-   * getBrands
+   * Get Roles 
    */
   public getRoles() {
     this.service_SignUp.getRoles().subscribe((jsonTransfer) => {
@@ -55,7 +56,7 @@ export class AppComponent {
   }
 
   /**
-   * show_Alert
+   * Show alert 
    * @param value 
    */
   public show_Alert(value: boolean) {
@@ -63,7 +64,7 @@ export class AppComponent {
   }
 
   /**
-  * showPassword
+  * Show/Hide Password
   */
   public showPassword() {
     if ((<HTMLInputElement>document.getElementById("check_Password")).checked) {
@@ -74,7 +75,7 @@ export class AppComponent {
   }
 
   /**
-   * windows
+   * Change window
    * @param window 
    */
   public windows(window: string) {
@@ -82,7 +83,7 @@ export class AppComponent {
   }
 
   /**
-   * logIn  LogIn Admin 
+   * LogIn Admin 
    */
   public logIn() {
     let username: string = (<HTMLInputElement>document.getElementById("input_Username")).value.trim();
@@ -112,7 +113,6 @@ export class AppComponent {
           this.show_alert = true;
         }
       });
-
     }
   }
 }

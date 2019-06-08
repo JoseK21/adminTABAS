@@ -16,7 +16,7 @@ export class DeleteComponent implements OnInit {
   show_alert: boolean = false;
   text_alert: string = '';
   type_alert: string = '';
-
+  //Lists
   colors: String[] = [];
   flights: String[] = [];
   planes: String[] = [];
@@ -28,90 +28,84 @@ export class DeleteComponent implements OnInit {
   ngOnInit() { this.getPlanes(), this.getBagCartsID(), this.getColors(), this.getFlights(), this.getRoles() }
 
   /**
-   * getColors
+   * Get Colors' List
    */
   public getColors() {
-      this.service_Baggage.getColors().subscribe((jsonTransfer) => {
-        const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
-        console.log(jsonWEBAPI);
-        if (jsonWEBAPI.http_result == 1) {
-          this.colors = jsonWEBAPI.colors;
-        } else {
-          this.colors = [];
-        }
-      });    
+    this.service_Baggage.getColors().subscribe((jsonTransfer) => {
+      const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
+      console.log(jsonWEBAPI);
+      if (jsonWEBAPI.http_result == 1) {
+        this.colors = jsonWEBAPI.colors;
+      } else {
+        this.colors = [];
+      }
+    });
   }
 
-
   /**
-   * getFlights
+   * Get Flights' List
    */
   public getFlights() {
-    
-      this.service_flight.getFlights().subscribe((jsonTransfer) => {
-        const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
-        console.log(jsonWEBAPI);
-        if (jsonWEBAPI.http_result == 1) {
-          this.flights = jsonWEBAPI.flights;
-        } else {
-          this.flights = [];
-        }
-      });
+    this.service_flight.getFlights().subscribe((jsonTransfer) => {
+      const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
+      console.log(jsonWEBAPI);
+      if (jsonWEBAPI.http_result == 1) {
+        this.flights = jsonWEBAPI.flights;
+      } else {
+        this.flights = [];
       }
-
+    });
+  }
 
   /**
-   * getBrands
+   * Get Planes' List
    */
   public getPlanes() {
-   
-      this.service_flight.getPlanes().subscribe((jsonTransfer) => {
-        const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
-        console.log(jsonWEBAPI);
-        if (jsonWEBAPI.http_result == 1) {
-          this.planes = jsonWEBAPI.airplanes;
-        } else {
-          this.planes = [];
-        }
-      });
-    
+    this.service_flight.getPlanes().subscribe((jsonTransfer) => {
+      const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
+      console.log(jsonWEBAPI);
+      if (jsonWEBAPI.http_result == 1) {
+        this.planes = jsonWEBAPI.airplanes;
+      } else {
+        this.planes = [];
+      }
+    });
   }
 
 
   /**
-  * getRoles
+  * Get Roles' List
   */
   public getRoles() {
-      this.service_SignUp.getRoles().subscribe((jsonTransfer) => {
-        const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
-        console.log(jsonWEBAPI);
-        if (jsonWEBAPI.http_result == 1) {
-          this.listRole = jsonWEBAPI.roles;
-        } else {
-          this.listRole = [];
-        }
-      });
-    }
-  
+    this.service_SignUp.getRoles().subscribe((jsonTransfer) => {
+      const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
+      console.log(jsonWEBAPI);
+      if (jsonWEBAPI.http_result == 1) {
+        this.listRole = jsonWEBAPI.roles;
+      } else {
+        this.listRole = [];
+      }
+    });
+  }
+
 
   /**
-  * get BagCarts IDs
+  * Get BagCarts IDs' List
   */
   public getBagCartsID() {
-      this.service_BagCart.getBagCartsIDBrands().subscribe((jsonTransfer) => {
-        const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
-        console.log(jsonWEBAPI);
-        if (jsonWEBAPI.http_result == 1) {
-          this.bagCartsId = jsonWEBAPI.bagcarts;
-        } else {
-          this.bagCartsId = [];
-        }
-      });
-    
+    this.service_BagCart.getBagCartsIDBrands().subscribe((jsonTransfer) => {
+      const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
+      console.log(jsonWEBAPI);
+      if (jsonWEBAPI.http_result == 1) {
+        this.bagCartsId = jsonWEBAPI.bagcarts;
+      } else {
+        this.bagCartsId = [];
+      }
+    });
   }
 
   /**
-   * getBrands
+   * Delete Plane
    */
   public deletePlanes() {
     let dataToDelete: string = (<HTMLInputElement>document.getElementById("input_Airplane_Del")).value.trim();
@@ -133,29 +127,29 @@ export class DeleteComponent implements OnInit {
   }
 
   /**
-  * get BagCarts IDs
+  * Delete BagCarts by Id
   */
- public deleteBagCartsID() {
-  let dataToDelete: string = (<HTMLInputElement>document.getElementById("input_BagCart_Del")).value.trim();
-  if (dataToDelete.length == 0) {
-    this.show_alert = true;
-    this.text_alert = 'Flight Id entry blank';
-    this.type_alert = 'warning';
-  } else {
-    this.service_delete.deleteBagCart(dataToDelete).subscribe((jsonTransfer) => {
-      const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
-      console.log(jsonWEBAPI);
-      if (jsonWEBAPI.http_result == 1) {
-        this.bagCartsId = jsonWEBAPI.bagcarts;
-      } else {
-        this.bagCartsId = [];
-      }
-    });
+  public deleteBagCartsID() {
+    let dataToDelete: string = (<HTMLInputElement>document.getElementById("input_BagCart_Del")).value.trim();
+    if (dataToDelete.length == 0) {
+      this.show_alert = true;
+      this.text_alert = 'Flight Id entry blank';
+      this.type_alert = 'warning';
+    } else {
+      this.service_delete.deleteBagCart(dataToDelete).subscribe((jsonTransfer) => {
+        const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
+        console.log(jsonWEBAPI);
+        if (jsonWEBAPI.http_result == 1) {
+          this.bagCartsId = jsonWEBAPI.bagcarts;
+        } else {
+          this.bagCartsId = [];
+        }
+      });
+    }
   }
-}
-  
+
   /**
-   * getColors
+   * Delete Color
    */
   public deleteColors() {
     let dataToDelete: string = (<HTMLInputElement>document.getElementById("input_Color_Del")).value.trim();
@@ -178,7 +172,7 @@ export class DeleteComponent implements OnInit {
 
 
   /**
-   * getFlights
+   * Delete Flight
    */
   public deleteFlights() {
     let dataToDelete: string = (<HTMLInputElement>document.getElementById("input_Flight_Del")).value.trim();
@@ -199,12 +193,8 @@ export class DeleteComponent implements OnInit {
     }
   }
 
-
-  
-
-
   /**
-  * getRoles
+  * Delete Role
   */
   public deleteRoles() {
     let dataToDelete: string = (<HTMLInputElement>document.getElementById("input_Role_Del")).value.trim();
@@ -224,6 +214,4 @@ export class DeleteComponent implements OnInit {
       });
     }
   }
-
-  
 }

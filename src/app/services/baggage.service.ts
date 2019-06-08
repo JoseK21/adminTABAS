@@ -11,18 +11,8 @@ export class BaggageService {
 
   constructor(private http: HttpClient) { }
 
-
   /**
-   * Get all Colors
-   */
-  getColors() {
-    const path = `${this.api}colors`;
-    console.log(path);
-    return this.http.get(path);
-  }
-
-  /**
-   * createSuitcase
+   * Create Suitcase
    * @param json '{"username":"XXXX", "weight":"XX.XX", "color": "XXXX"}'
    */
   createSuitcase(json: any) {
@@ -31,6 +21,14 @@ export class BaggageService {
     return this.http.post(path, "'" + JSON.stringify(json) + "'", httpOptions);
   }
 
+  /**
+     * Get all Colors
+     */
+  getColors() {
+    const path = `${this.api}colors`;
+    console.log(path);
+    return this.http.get(path);
+  }
 
 
 }

@@ -13,8 +13,9 @@ export class SignUpAdminComponent implements OnInit {
   type_alert: string = '';
   // Interface
   password_show: string = 'password';
+  //List
   listRole: String[] = [];
-
+  // Constants
   i: number = 0;
   str: string = '';
 
@@ -23,7 +24,7 @@ export class SignUpAdminComponent implements OnInit {
   ngOnInit() { this.getRoles(); }
 
   /**
-   * SignUp
+   * Sign Up a User
    */
   public SignUp() {
     let f_name: string = (<HTMLInputElement>document.getElementById("input_FirstName")).value.trim();
@@ -54,7 +55,6 @@ export class SignUpAdminComponent implements OnInit {
         username: username,
         password: password,
       };
-
       this.service_SignUp.signUpAdmin(json).subscribe((jsonTransfer) => {
         const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
         console.log(jsonWEBAPI);
@@ -67,18 +67,17 @@ export class SignUpAdminComponent implements OnInit {
       });
       this.assingRoles(username);
     }
-    
   }
 
   /**
-   * name
+   * Validate a email
    */
   public validateEmail(email: string) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
   }
 
   /**
-   * assingRoles
+   * Assing Roles to User
    */
   public assingRoles(username: string) {
     if (this.i = 1) {
@@ -104,7 +103,7 @@ export class SignUpAdminComponent implements OnInit {
   }
 
   /**
-   * getRoles
+   * Get Roles' List
    */
   public getRoles() {
     this.service_SignUp.getRoles().subscribe((jsonTransfer) => {
@@ -120,14 +119,14 @@ export class SignUpAdminComponent implements OnInit {
   }
 
   /**
-   * show_Modal
+   * Show Alert
    */
   public show_Alert(value: boolean) {
     this.show_alert = value;
   }
 
   /**
-   * showPassword
+   * Show/Hide Password
    */
   public showPassword() {
     if ((<HTMLInputElement>document.getElementById("check_Password_SU")).checked) {
@@ -138,7 +137,7 @@ export class SignUpAdminComponent implements OnInit {
   }
 
   /**
-  * roleCheck
+  * Set Checked Roles
   */
   public roleCheck() {
     let str: String[] = [];

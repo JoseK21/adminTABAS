@@ -8,29 +8,27 @@ import { FlightService } from '../services/flight.service';
 })
 export class PlaneToFlightComponent implements OnInit {
 
-
-
   // Alert 
   show_alert: boolean = false;
   text_alert: string = '';
   type_alert: string = '';
-
+  //Lists
   flights: String[] = [];
   planes: String[] = [];
 
   constructor(private service_flight: FlightService) { }
 
-  ngOnInit() {  this.getFlights(); this.getPlanes()}
+  ngOnInit() { this.getFlights(); this.getPlanes() }
 
   /**
-   * show_Alert
+   * Show Alert
    */
   public show_Alert(value: boolean) {
     this.show_alert = value;
   }
 
   /**
-   * createBagcart
+   * Assing Plane to Flight
    */
   public a_PlaneToFlight() {
     let plane: string = (<HTMLInputElement>document.getElementById("input_Planes_PTF")).value.trim();
@@ -62,7 +60,7 @@ export class PlaneToFlightComponent implements OnInit {
   }
 
   /**
-   * getFlights
+   * Get Flights' List
    */
   public getFlights() {
     this.service_flight.getFlights().subscribe((jsonTransfer) => {
@@ -78,7 +76,7 @@ export class PlaneToFlightComponent implements OnInit {
   }
 
   /**
-   * getBrands
+   * Get Planes' List
    */
   public getPlanes() {
     this.service_flight.getPlanes().subscribe((jsonTransfer) => {

@@ -14,6 +14,7 @@ export class BagcartToFlightComponent implements OnInit {
   text_alert: string = '';
   type_alert: string = '';
 
+  //Lists
   flights: String[] = [];
   brands: String[] = [];
   bagCartsId: String[] = [];
@@ -24,14 +25,14 @@ export class BagcartToFlightComponent implements OnInit {
   ngOnInit() { this.getFlights(); this.getBagCartsID()}
 
   /**
-   * show_Alert
+   * Show Alert
    */
   public show_Alert(value: boolean) {
     this.show_alert = value;
   }
 
   /**
-   * createBagcart
+   * Creation of a Bagcart
    */
   public a_BagcartToFlight() {
     let flight: string = (<HTMLInputElement>document.getElementById("input_Flight_BTF")).value.trim();
@@ -63,7 +64,7 @@ export class BagcartToFlightComponent implements OnInit {
   }
 
   /**
-   * getFlights
+   * Get Flights' List
    */
   public getFlights() {
     this.service_Flight.getFlightsUnassigned().subscribe((jsonTransfer) => {
@@ -79,7 +80,7 @@ export class BagcartToFlightComponent implements OnInit {
   }
 
   /**
-   * getBrands
+   * Get Brands' List
    */
   public getBrands() {
     this.service_BagCart.getBrands().subscribe((jsonTransfer) => {
@@ -96,7 +97,7 @@ export class BagcartToFlightComponent implements OnInit {
 
   
    /**
-   * get BagCarts IDs
+   * Get BagCart Ids' List
    */
   public getBagCartsID() {
     this.service_BagCart.getBagCartsIDBrands().subscribe((jsonTransfer) => {
@@ -112,11 +113,10 @@ export class BagcartToFlightComponent implements OnInit {
   }
 
   /**
-   * get seccion of a Plane
+   * Get seccion of a Plane
    */
   public getSeccion() {
     let flight: string = (<HTMLInputElement>document.getElementById("input_Flight_BTF")).value.trim();
-
     if (flight == '') {
       this.text_alert = 'Please select a Flight';
       this.type_alert = 'warning';
@@ -133,6 +133,5 @@ export class BagcartToFlightComponent implements OnInit {
         }
       });
     }
-
   }
 }

@@ -11,7 +11,6 @@ export class FlightService {
 
   constructor(private http: HttpClient) { }
 
-
   /**
    * Create Flight
    * @param json '{model:XX}'
@@ -23,71 +22,23 @@ export class FlightService {
   }
 
   /**
-   * Get all Planes
-   */
-  getPlanes() {
-    const path = `${this.api}planes`;
-    console.log(path);
-    return this.http.get(path);
-  }
-
-  
-
-  /**
-   * Get all Flights
-   */
-  getFlights() {
-    const path = `${this.api}flights/active`;
-    console.log(path);
-    return this.http.get(path);
-  }
-
-  /**
-   * Get seccions of a plane
-   */
-  getSeccions(flight:string) {
-    const path = `${this.api}${flight}/sections`;
-    console.log(path);
-    return this.http.get(path);
-  }
-
-  /**
-   * Get all Flights Unassigned
-   */
-  getFlightsUnassigned() {
-    const path = `${this.api}flights/unassigned`;  
-    console.log(path);
-    return this.http.get(path);
-  }
-
-  /**
    * Assign Bagcart To Flight
    * @param json {"flight_id": X, "bg_brand": XXXX}
    */
   assignBagcartToFlight(json: any) {
     console.log(JSON.parse(JSON.stringify(json)));
-    const path = `${this.api}flights/bagcart/assign`; 
+    const path = `${this.api}flights/bagcart/assign`;
     return this.http.post(path, "'" + JSON.stringify(json) + "'", httpOptions);
   }
 
   /**
-   * Assign Bagcart To Flight
+   * Assign Plane To Flight
    * @param json {"flight_id": X, "bg_brand": XXXX}
    */
   assignPlaneToFlight(json: any) {
     console.log(JSON.parse(JSON.stringify(json)));
     const path = `${this.api}flight/plane/assign`;
     return this.http.post(path, "'" + JSON.stringify(json) + "'", httpOptions);
-  }
-
-  /**
-   * get sections of a flight
-   * @param flightID Id of Flight to get seccion
-   */
-  GetFlightSections(flightID: string) {
-    const path = `${this.api}${flightID}/sections`;
-    console.log(path);
-    return this.http.get(path);
   }
 
   /**
@@ -100,6 +51,51 @@ export class FlightService {
     return this.http.post(path, "'" + JSON.stringify(json) + "'", httpOptions);
   }
 
+  /**
+   * Get sections of a flight
+   * @param flightID
+   */
+  GetFlightSections(flightID: string) {
+    const path = `${this.api}${flightID}/sections`;
+    console.log(path);
+    return this.http.get(path);
+  }
+
+  /**
+     * Get all Planes
+     */
+  getPlanes() {
+    const path = `${this.api}planes`;
+    console.log(path);
+    return this.http.get(path);
+  }
+
+  /**
+   * Get all Flights
+   */
+  getFlights() {
+    const path = `${this.api}flights/active`;
+    console.log(path);
+    return this.http.get(path);
+  }
+
+  /**
+   * Get seccions of a plane by flight
+   */
+  getSeccions(flight: string) {
+    const path = `${this.api}${flight}/sections`;
+    console.log(path);
+    return this.http.get(path);
+  }
+
+  /**
+   * Get all Unassigned Flights
+   */
+  getFlightsUnassigned() {
+    const path = `${this.api}flights/unassigned`;
+    console.log(path);
+    return this.http.get(path);
+  }
 
   /**
    * Get Unassigned Baggage
@@ -110,10 +106,6 @@ export class FlightService {
     return this.http.get(path);
   }
 
-
-
-  // I Don´t remember this method
-  
   /**
    * Get all Models
    */
@@ -122,6 +114,4 @@ export class FlightService {
     console.log(path);
     return this.http.get(path);
   }
-
-
 }

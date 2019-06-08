@@ -17,33 +17,31 @@ export class CreateBagcartComponent implements OnInit {
   show_alert_2: boolean = false;
   text_alert_2: string = 'Nada';
   type_alert_2: string = 'success';
-
+  //List
   brands: String[] = [];
   models: String[] = [];
 
   constructor(private service_BagCart: BagCartService, private service_Flight: FlightService) { }
 
-  ngOnInit() {
-    this.getBrands();
-  }
+  ngOnInit() { this.getBrands(); }
 
 
   /**
-   * show_Alert
+   * Show Alert
    */
   public show_Alert(value: boolean) {
     this.show_alert = value;
   }
 
   /**
-   * show_Aler_2
+   * Show Alert 2
    */
   public show_Alert_2(value: boolean) {
     this.show_alert_2 = value;
   }
 
   /**
-   * createBagcart
+   * Create Bagcart
    */
   public createBagcart() {
     let brand: string = (<HTMLInputElement>document.getElementById("input_Brand_CB")).value.trim();
@@ -77,7 +75,7 @@ export class CreateBagcartComponent implements OnInit {
   }
 
   /**
-   * addBrand
+   * Add Brand
    */
   public addBrand() {
     let add_brand: string = (<HTMLInputElement>document.getElementById("input_Brand_CB_Add")).value.trim();
@@ -106,7 +104,7 @@ export class CreateBagcartComponent implements OnInit {
   }
 
   /**
-   * getBrands
+   * Get Brands
    */
   public getBrands() {
     this.service_BagCart.getBrands().subscribe((jsonTransfer) => {
@@ -122,7 +120,7 @@ export class CreateBagcartComponent implements OnInit {
   }
 
   /**
-   * getModels
+   * Get Plane's List
    */
   public getModels() {
     this.service_Flight.getPlanes().subscribe((jsonTransfer) => {

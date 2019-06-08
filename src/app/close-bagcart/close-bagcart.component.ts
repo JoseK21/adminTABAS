@@ -19,24 +19,22 @@ export class CloseBagcartComponent implements OnInit {
   show_alert_2: boolean = false;
   text_alert_2: string = 'Nada';
   type_alert_2: string = 'success';
-
+  //List
   flight_IDs: String[] = [];
 
   constructor(private service_BagCart: BagCartService, private service_Flight: FlightService) { }
 
-  ngOnInit() {
-    this.getFlights();
-  }
+  ngOnInit() { this.getFlights(); }
 
   /**
-   * show_Alert
+   * Show Alert
    */
   public show_Alert(value: boolean) {
     this.show_alert = value;
   }
 
   /**
-   * closeBagcart
+   * Close Bagcart
    */
   public closeBagcart() {
     let flight_id: string = (<HTMLInputElement>document.getElementById("input_Flight_ID_CB")).value.trim();
@@ -62,7 +60,7 @@ export class CloseBagcartComponent implements OnInit {
   }
 
   /**
-   * getFlights
+   * Get Flights' List
    */
   public getFlights() {
     this.service_Flight.getFlights().subscribe((jsonTransfer) => {

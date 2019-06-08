@@ -13,25 +13,22 @@ export class CreateSuitcaseComponent implements OnInit {
   text_alert: string = '';
   type_alert: string = '';
 
-  // Colors
+  // List
   colors: String[] = [];
-
 
   constructor(private service_Baggage: BaggageService) { }
 
-  ngOnInit() {
-    this.getColors();
-  }
+  ngOnInit() { this.getColors(); }
 
   /**
-   * show_Modal
+   * Show Alert
    */
   public show_Alert(value: boolean) {
     this.show_alert = value;
   }
 
   /**
-   * createSuitcase
+   * Create Suitcase
    */
   public createSuitcase() {
     let username: string = (<HTMLInputElement>document.getElementById("input_Username_CS")).value.trim();
@@ -67,7 +64,7 @@ export class CreateSuitcaseComponent implements OnInit {
   }
 
   /**
-   * getColors
+   * Get Colors' List
    */
   public getColors() {
     this.service_Baggage.getColors().subscribe((jsonTransfer) => {

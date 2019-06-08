@@ -12,7 +12,6 @@ export class SignUpService {
   
   constructor(private http: HttpClient) { }
 
-
   /**
    * Sign Up Admin
    * @param json '{full_name: XX, email: XX@XX, phone_number: XX, username: XX, password: XX}'
@@ -22,7 +21,6 @@ export class SignUpService {
     const path = `${this.api}signup`;
     return this.http.post(path, "'" + JSON.stringify(json) + "'", httpOptions);
   }
-
 
   /**
    * Set the Role of a Admin

@@ -8,32 +8,30 @@ import { FlightService } from '../services/flight.service';
   styleUrls: ['./report.component.css']
 })
 export class ReportComponent implements OnInit {
-  baggages: [];  // Report Baggage by CLient
-  baggageInfo:String[] = []; // Report Baggege by flight
-  flights: []; // List of flights
-  list =  []; // List of flights
-
-  list_flights = [];  //Default
-
-
   // Alert 
   show_alert: boolean = false;
   text_alert: string = '';
   type_alert: string = '';
+  //Lists
+  baggages: [];
+  baggageInfo: String[] = [];
+  flights: [];
+  list = [];
+  list_flights = [];
 
   constructor(private service_Report: ServiceReportService, private service_Flight: FlightService) { }
 
-  ngOnInit() {  this.getFlights() }
+  ngOnInit() { this.getFlights() }
 
   /**
-   * getFlights
+   * Get Flights' List
    */
   public getFlights() {
     this.service_Flight.getFlights().subscribe((jsonTransfer) => {
       const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
       console.log(jsonWEBAPI);
       if (jsonWEBAPI.http_result == 1) {
-        this.flights = jsonWEBAPI.flights;        
+        this.flights = jsonWEBAPI.flights;
       } else {
         this.flights = [];
       }
@@ -41,15 +39,15 @@ export class ReportComponent implements OnInit {
   }
 
   /**
-   * reportCustumer
+   * Generate Report Custumer
    */
   public reportCustumer() {
     this.service_Report.getBaggageByClient().subscribe((jsonTransfer) => {
-      const userStr = JSON.stringify(jsonTransfer); // Object to String
-        const jsonWEBAPI = JSON.parse(JSON.parse(userStr)); // String to Json 
+      const userStr = JSON.stringify(jsonTransfer);
+      const jsonWEBAPI = JSON.parse(JSON.parse(userStr));
       console.log(jsonWEBAPI);
       if (jsonWEBAPI.http_result == 1) {
-        this.baggages = JSON.parse("[" + jsonWEBAPI.baggage + "]");  
+        this.baggages = JSON.parse("[" + jsonWEBAPI.baggage + "]");
       } else {
         alert("Error - Get Baggage by client");
       }
@@ -57,15 +55,14 @@ export class ReportComponent implements OnInit {
   }
 
   /**
-   * reportCustumer
+   * Generate Report Baggage
    */
   public reportBaggage() {
     let f: string = (<HTMLInputElement>document.getElementById("input_Flight_R")).value.trim();
     this.service_Report.getBaggage(Number(f)).subscribe((jsonTransfer) => {
       const jsonWEBAPI = JSON.parse(JSON.parse(JSON.stringify(jsonTransfer)));
       console.log(jsonWEBAPI);
-      if (jsonWEBAPI.http_result == 1) {        
-        // this.baggageInfo = jsonWEBAPI;
+      if (jsonWEBAPI.http_result == 1) {
         this.list = [];
         this.list.push(jsonWEBAPI.flight);
         this.list.push(jsonWEBAPI.model);
@@ -77,7 +74,7 @@ export class ReportComponent implements OnInit {
         this.list = [];
         this.list.push('-E-');
         this.list.push('-E-');
-        this.list.push('-E-');        
+        this.list.push('-E-');
         this.list.push('-E-');
         this.list.push('-E-');
         this.list.push('-E-');
